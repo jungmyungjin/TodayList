@@ -5,7 +5,7 @@ Todo List 웹 페이지. 'Today List'
 
 ### 🎨 Figma
 
-[![image-20230626161414990](/Users/jungmyungjin/Library/Application Support/typora-user-images/image-20230626161414990.png)](https://www.figma.com/file/Ko2Rb4SJEljOHd0WJ3owGD/TodoList?type=design&mode=design&t=FDN685904FySH8MJ-1)
+[![image](https://github.com/jungmyungjin/todayList/assets/36308113/4774edc5-e6da-485a-9e69-7704ccf53097)](https://www.figma.com/file/Ko2Rb4SJEljOHd0WJ3owGD/TodoList?type=design&mode=design&t=FDN685904FySH8MJ-1)
 
 
 
@@ -13,7 +13,8 @@ Todo List 웹 페이지. 'Today List'
 
 *초기 기획*
 
-[![image-20230626161623783](/Users/jungmyungjin/Library/Application Support/typora-user-images/image-20230626161623783.png)](https://drive.google.com/file/d/126YTVVJ6aAPbhywTubw-Dc62dxcXtRVl/view)
+[![image](https://github.com/jungmyungjin/todayList/assets/36308113/f004f41a-c365-4823-9b10-31fcaf7df9a9)
+](https://drive.google.com/file/d/126YTVVJ6aAPbhywTubw-Dc62dxcXtRVl/view)
 
 
 
