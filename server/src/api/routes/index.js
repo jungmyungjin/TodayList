@@ -1,4 +1,8 @@
 const express = require("express");
-const router = express.Router();
+const hello = require("./hello");
+// const task = require("./task");
+// const user = require("./user");
 
-module.exports = router;
+const routers = { hello };
+
+module.exports = routers;

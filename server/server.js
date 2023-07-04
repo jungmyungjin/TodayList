@@ -19,8 +19,10 @@ app.use(cookieParser()); // 쿠키 파싱
 app.use(express.json()); // json 파싱
 // app.use(express.urlencoded({ extended: true })); // 폼데이터 파싱 //이 미들웨어는 URL 인코딩된 요청 본문을 파싱합니다. extended: true는 복잡한 객체를 URL 인코딩할 수 있게 합니다.
 
-// app.use("/api/hello", routers.hello);
 // app.use(validationLogin);
+
+// api
+app.use("/api/hello", routers.hello);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
