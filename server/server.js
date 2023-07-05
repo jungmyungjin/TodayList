@@ -1,11 +1,11 @@
 const express = require("express");
 require("dotenv").config();
 const app = express();
-const routers = require("./src/api/routes");
+const routers = require("./src/api/routers/index");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 // const { validationLogin } = require("./middlewares");
-const db = require("./src/models"); // index.js 파일 임포트
+const models = require("./src/models"); // index.js 파일 임포트
 
 const allowedOrigins = ""; // 모든 출처 허용, 추후 허용할 사이트만 따로 설정 필요
 
@@ -22,7 +22,7 @@ app.use(express.json()); // json 파싱
 // app.use(validationLogin);
 
 // api
-app.use("/api/hello", routers.hello);
+app.use("/api", routers);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

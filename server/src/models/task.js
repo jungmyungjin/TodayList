@@ -24,7 +24,7 @@ const Task = sequelize.define(
     parents_id: {
       // self-referencing
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
     },
     content: {
       type: DataTypes.STRING,

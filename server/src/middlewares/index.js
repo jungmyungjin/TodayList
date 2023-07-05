@@ -1,2 +1,4 @@
 // error-handler.js
-exports.validationLogin = require("./validationLogin");
+const asyncHandler = require("./asyncHandler");
+
+module.exports = { asyncHandler };

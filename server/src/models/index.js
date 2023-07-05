@@ -20,10 +20,4 @@ sequelize
     console.error("Failed to create database & tables:", error);
   });
 
-const db = {};
-
-db.sequelize = sequelize;
-db.User = User;
-db.Task = Task;
-
-module.exports = db;
+module.exports = { sequelize, User, Task };
