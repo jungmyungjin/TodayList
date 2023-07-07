@@ -1,6 +1,6 @@
 const express = require("express");
 const task = express.Router();
-// const asyncHandler = require("../../middlewares/async-handeler");
+// const errorHandler = require("../../middlewares/async-handeler");
 const { TaskController } = require("../controllers/index");
 
 task.get("/", TaskController.indexTask);

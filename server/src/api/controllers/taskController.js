@@ -1,25 +1,25 @@
 const express = require("express");
 const { taskService } = require("../../services/index");
-const { asyncHandler } = require("../../middlewares/index");
+const { errorHandler } = require("../../middlewares/index");
 
 class TaskController {
-  indexTask = asyncHandler(async (req, res) => {
+  indexTask = errorHandler(async (req, res) => {
     const allTask = await taskService.getTasks();
     res.status(200).json(allTask);
   });
 
-  showTask = asyncHandler(async (req, res) => {
+  showTask = errorHandler(async (req, res) => {
     // 코드 내용
   });
-  createTask = asyncHandler(async (req, res) => {
-    // 코드 내용
-  });
-
-  updateTask = asyncHandler(async (req, res) => {
+  createTask = errorHandler(async (req, res) => {
     // 코드 내용
   });
 
-  deleteTask = asyncHandler(async (req, res) => {
+  updateTask = errorHandler(async (req, res) => {
+    // 코드 내용
+  });
+
+  deleteTask = errorHandler(async (req, res) => {
     // 코드 내용
   });
 
