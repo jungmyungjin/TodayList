@@ -1,10 +1,10 @@
 const express = require("express");
-const { taskService } = require("../../services/index");
+const { getTasks } = require("../../services/taskService");
 const { errorHandler } = require("../../middlewares/index");
 
 class TaskController {
   indexTask = errorHandler(async (req, res) => {
-    const allTask = await taskService.getTasks();
+    const allTask = await getTasks();
     res.status(200).json(allTask);
   });
 

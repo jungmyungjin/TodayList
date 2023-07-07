@@ -8,13 +8,17 @@ const errorHandler = (requestHandler) => {
     try {
       await requestHandler(req, res);
     } catch (error) {
-      if (
-        error.message === "services/userService/createUser:Registered Email"
-      ) {
-        res.status(409); // Conflict
-      } else {
-        res.status(500); // Internal Server Error)
+      switch (error.message[0]) {
+        case "services/userService/createUser:Registered Email":
+          res.status(409); // Conflict
+          break;
+        case "login denied":
+          res.status(401); // unauthorized
+          break;
+        default:
+          res.status(500); // Internal Server Error)
       }
+
       next(error);
     }
   };

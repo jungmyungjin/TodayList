@@ -3,9 +3,14 @@ const user = express.Router();
 const { validationPassword } = require("../../middlewares/index");
 const { UserController } = require("../controllers/index");
 
-user.get("/", UserController.indexUser);
+// 로그인
+user.post("/login", UserController.login);
 
-user.post("/", validationPassword, UserController.createUser);
+// 회원가입
+user.post("/signUp", validationPassword, UserController.signUp);
+
+// 전체 사용자 조회
+user.get("/", UserController.indexUser);
 
 user.patch("/", (req, res) => {
   res.send("✨ hello! I'm TodayList ✨");
