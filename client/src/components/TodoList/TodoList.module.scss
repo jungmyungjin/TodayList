@@ -1,0 +1,15 @@
+@import '../../styles/main.scss';
+
+.Layout {
+  width: 100%;
+  height: 100%;
+  // background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+}
+
+.TodoList {
+  width: 80%;
+  // background-color: whitesmoke;
+  height: 100%;
+}

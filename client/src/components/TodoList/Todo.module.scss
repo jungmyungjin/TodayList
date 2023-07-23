@@ -1,0 +1,129 @@
+@import '../../styles/main.scss';
+
+// 기본 투두리스트
+// Default : 메인 투두
+.Layout {
+  display: flex;
+  align-items: center;
+  // background-color: chartreuse;
+  justify-content: flex-start;
+  margin-top: 10px;
+
+  .Todo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-right: auto;
+    // background-color: brown;
+    height: 50px;
+    border-bottom: 4px solid $redBeanPink;
+
+    .CheckLayout {
+      position: relative;
+      // background-color: lawngreen;
+      margin: 20px 20px 20px 0px;
+      width: 30px;
+      height: 32px;
+      .Check {
+        width: inherit;
+        height: inherit;
+        border-radius: 50%;
+        box-shadow: inset 0px 4px rgba(0, 0, 0, 0.15);
+        background-color: $redBeanPink;
+      }
+      & > img {
+        display: none;
+      }
+    }
+    .Contents {
+      font-size: 20px;
+      margin-right: auto;
+    }
+    .AddIcon {
+      cursor: pointer;
+      margin-right: 10px;
+      @include center-xy;
+      & > img {
+        display: none;
+        width: 33px;
+        height: 33px;
+      }
+    }
+    &:hover {
+      .AddIcon > img {
+        display: block;
+      }
+    }
+  }
+  // TODO Check
+  &.Checked {
+    .Todo {
+      .CheckLayout {
+        & > img {
+          display: block;
+          position: absolute;
+          border-color: $redBeanPink;
+          width: 80px;
+          top: -28px;
+          right: -26px;
+        }
+      }
+      .Contents {
+        text-decoration: line-through;
+        color: $redBeanPink;
+      }
+    }
+  }
+  .DeleteIcon {
+    width: 15px;
+    height: 15px;
+    margin-left: 12px;
+    @include center-xy;
+    // background-color: beige;
+    cursor: pointer;
+  }
+}
+
+.MainLayout {
+  margin-top: 25px;
+}
+
+// 서브 투두리스트
+.SubTodoLayout {
+  margin-left: 50px;
+  .Todo {
+    border-bottom: 4px solid $cementGray;
+    .Check {
+      background-color: $cementGray;
+    }
+  }
+  .SubCheckColor {
+    background-color: $cementGray;
+  }
+  .AddIcon {
+    svg {
+      border-color: $cementGray;
+    }
+  }
+
+  &.Checked {
+    .Contents {
+      text-decoration: line-through;
+      color: $cementGray;
+    }
+  }
+
+  .DeleteIcon {
+    svg {
+      border-color: $cementGray;
+    }
+  }
+}
+
+// 체크 투두리스트
+// .SubTodoLayout .Checked {
+//   .Contents {
+//     text-decoration: line-through;
+//     color: $cementGray;
+//   }
+// }
