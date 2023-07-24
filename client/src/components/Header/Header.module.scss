@@ -15,7 +15,6 @@
   // font 공통
   & > div {
     font-family: BagelFatOne;
-    text-shadow: 0px 0px 5px rgba($color: #9e0303c2, $alpha: 1);
     margin: 0px 20px;
     display: flex;
     align-items: center;
@@ -35,7 +34,7 @@
   }
 
   .LogoText {
-    color: $cementGray;
+    color: white;
     font-size: 30px;
     position: relative;
     top: -3px;
@@ -46,7 +45,7 @@
 .LayoutLogin {
   cursor: pointer;
   .LoginText {
-    color: $cementGray;
+    color: white;
     font-size: 20px;
   }
   .LoginIcon {
