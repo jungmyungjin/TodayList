@@ -16,27 +16,29 @@
     margin-right: auto;
     // background-color: brown;
     height: 50px;
-    border-bottom: 4px solid $redBeanPink;
+    border-bottom: 4px solid;
 
     .CheckLayout {
       position: relative;
+      cursor: pointer;
       // background-color: lawngreen;
       margin: 20px 20px 20px 0px;
-      width: 30px;
-      height: 32px;
       .Check {
         width: inherit;
         height: inherit;
         border-radius: 50%;
         box-shadow: inset 0px 4px rgba(0, 0, 0, 0.15);
-        background-color: $redBeanPink;
       }
       & > img {
         display: none;
       }
     }
     .Contents {
-      font-size: 20px;
+      outline: none;
+      border: 0;
+      width: 100%;
+      height: 100%;
+      font-size: inherit;
       margin-right: auto;
     }
     .AddIcon {
@@ -45,8 +47,8 @@
       @include center-xy;
       & > img {
         display: none;
-        width: 33px;
-        height: 33px;
+        // width: 33px;
+        // height: 33px;
       }
     }
     &:hover {
@@ -55,6 +57,7 @@
       }
     }
   }
+
   // TODO Check
   &.Checked {
     .Todo {
@@ -62,7 +65,6 @@
         & > img {
           display: block;
           position: absolute;
-          border-color: $redBeanPink;
           width: 80px;
           top: -28px;
           right: -26px;
@@ -70,60 +72,90 @@
       }
       .Contents {
         text-decoration: line-through;
-        color: $redBeanPink;
       }
     }
   }
   .DeleteIcon {
-    width: 15px;
-    height: 15px;
+    opacity: 0.6;
+
     margin-left: 12px;
     @include center-xy;
     // background-color: beige;
     cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
 .MainLayout {
   margin-top: 25px;
+  font-size: 20px;
+
+  .Todo {
+    // border-bottom: 4px solid $redBeanPink;
+    border-color: $redBeanPink;
+    .CheckLayout {
+      width: 32px;
+      height: 32px;
+      .Check {
+        background-color: $redBeanPink;
+      }
+    }
+  }
+  .SubCheckColor {
+    background-color: $redBeanPink;
+  }
+
+  &.Checked {
+    .Todo > .Contents {
+      color: $redBeanPink;
+    }
+  }
+  .AddIcon > img {
+    width: 33px;
+    height: 33px;
+  }
+  .DeleteIcon {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 // 서브 투두리스트
 .SubTodoLayout {
   margin-left: 50px;
+  font-size: 18px;
+
   .Todo {
-    border-bottom: 4px solid $cementGray;
-    .Check {
-      background-color: $cementGray;
+    border-color: $cementGray;
+    .CheckLayout {
+      width: 30px;
+      height: 30px;
+      .Check {
+        background-color: $cementGray;
+      }
     }
   }
   .SubCheckColor {
     background-color: $cementGray;
   }
-  .AddIcon {
-    svg {
-      border-color: $cementGray;
-    }
+
+  .Contents {
+    font-size: 18px;
   }
 
   &.Checked {
-    .Contents {
-      text-decoration: line-through;
+    .Todo > .Contents {
       color: $cementGray;
     }
   }
-
+  .AddIcon > img {
+    width: 33px;
+    height: 33px;
+  }
   .DeleteIcon {
-    svg {
-      border-color: $cementGray;
-    }
+    width: 13px;
+    height: 13px;
   }
 }
-
-// 체크 투두리스트
-// .SubTodoLayout .Checked {
-//   .Contents {
-//     text-decoration: line-through;
-//     color: $cementGray;
-//   }
-// }
