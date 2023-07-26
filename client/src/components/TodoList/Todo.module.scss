@@ -51,11 +51,6 @@
         // height: 33px;
       }
     }
-    &:hover {
-      .AddIcon > img {
-        display: block;
-      }
-    }
   }
 
   // TODO Check
@@ -115,6 +110,11 @@
   .AddIcon > img {
     width: 33px;
     height: 33px;
+  }
+  &:hover {
+    .AddIcon > img {
+      display: block;
+    }
   }
   .DeleteIcon {
     width: 15px;

@@ -1,59 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import recoil from 'recoil';
 import Todo from './Todo';
 import styles from './TodoList.module.scss';
-
-const Mockup: TodoItem[] = [
-  {
-    id: 1,
-    user_id: 1,
-    parents_id: null,
-    contents: '백엔드 마무리',
-    status: 'TODO',
-    order: 1,
-    createdAt: '2023-07-05T00:00:00.000Z',
-    updatedAt: '2023-07-05T00:00:00.000Z',
-  },
-  {
-    id: 2,
-    user_id: 1,
-    parents_id: null,
-    contents: '일찍 일어나기',
-    status: 'CHECKED',
-    order: 2,
-    createdAt: '2023-07-21T08:07:25.000Z',
-    updatedAt: '2023-07-21T08:07:25.000Z',
-  },
-  {
-    id: 3,
-    user_id: 1,
-    parents_id: null,
-    contents: '일찍 일어나기',
-    status: 'TODO',
-    order: 2,
-    createdAt: '2023-07-21T08:09:30.000Z',
-    updatedAt: '2023-07-21T08:09:30.000Z',
-  },
-  {
-    id: 4,
-    user_id: 1,
-    parents_id: 3,
-    contents: '일찍 자기',
-    status: 'TODO',
-    order: 2,
-    createdAt: '2023-07-21T08:09:49.000Z',
-    updatedAt: '2023-07-21T08:09:49.000Z',
-  },
-  {
-    id: 4,
-    user_id: 1,
-    parents_id: 3,
-    contents: ' 전날 일찍 저녁 먹기',
-    status: 'CHECKED',
-    order: 2,
-    createdAt: '2023-07-21T08:09:49.000Z',
-    updatedAt: '2023-07-21T08:09:49.000Z',
-  },
-];
+import { fetchTodoList } from '../../services/apiService/apiService';
+import AddIcon from '../../assets/icons/Add.svg';
 
 interface TodoItem {
   id: number;
@@ -67,21 +17,33 @@ interface TodoItem {
 }
 
 const TodoList = () => {
+  const [todoLists, setTodoLists] = useState(''); //
+  const rawTodoData = fetchTodoList(); // API 불러오기
+  // console.log(JSON.stringify(rawTodoData));
+  localStorage.setItem('todoData', JSON.stringify(rawTodoData)); // 로컬 스토리지 저장
+  const lists = JSON.parse(localStorage.getItem('todoData') || ''); // 로컬스토리지에 저장한 값 보여주기
+
+  // const updateList = (idx, contents) => {
+  //   lists;
+  // };
+
   return (
     <div className={styles.Layout}>
       <div className={styles.TodoList}>
-        {Mockup.map((e, idx) => {
+        {lists.map((e: TodoItem, idx: Number) => {
           const type = e.parents_id ? 'SUB' : 'MAIN';
-
           return (
             <Todo
-              key={idx}
+              key={idx + ''}
               type={type}
               contents={e.contents}
               status={e.status}
             />
           );
         })}
+        <div className={styles.AddTodo}>
+          <img src={AddIcon} alt="" />
+        </div>
       </div>
     </div>
   );
