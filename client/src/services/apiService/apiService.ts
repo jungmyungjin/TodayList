@@ -1,17 +1,7 @@
 import axios from 'axios';
 
-//
-interface TodoItem {
-  id: number;
-  user_id: number;
-  parents_id: number | null;
-  contents: string;
-  status: 'TODO' | 'CHECKED';
-  order: number;
-  createdAt: string;
-  updatedAt: string;
-}
-
+// 목업 데이터 =============================================================================
+import { TodoItem } from '../../types/TodoList';
 const Mockup: TodoItem[] = [
   {
     id: 1,
@@ -64,7 +54,7 @@ const Mockup: TodoItem[] = [
     updatedAt: '2023-07-21T08:09:49.000Z',
   },
 ];
-//
+// ====================================================================================
 
 const apiClient = axios.create({
   baseURL: `${process.env.REACT_APP_API_ADDRESS}`,
