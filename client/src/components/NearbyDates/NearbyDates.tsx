@@ -25,10 +25,10 @@ const ThisWeekDates = () => {
     <div className={styles.Layout}>
       <div className={styles.DatesLayoutSection}>
         <div className={styles.NearbyDatesLayout}>
-          {nearbyDateTimes.map((item, idx) => {
+          {nearbyDateTimes.map((item, idx: number) => {
             return (
               <NearDate
-                key={idx + ''}
+                key={idx}
                 datetime={item}
                 title={idx === centerIdx ? 'today' : ' '}
               />
