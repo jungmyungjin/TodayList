@@ -75,6 +75,11 @@ const Todo = ({
     setTodoAll(newTodoData);
   };
 
+  const deleteTodoClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    const newTodoData = [...todoAll.slice(0, idx), ...todoAll.slice(idx + 1)];
+    setTodoAll(newTodoData);
+  };
+
   return (
     <div
       className={`${styles.Layout} ${
@@ -95,7 +100,7 @@ const Todo = ({
           <img src={AddIcon} alt="" />
         </div>
       </div>
-      <div className={styles.DeleteIcon}>
+      <div className={styles.DeleteIcon} onClick={deleteTodoClickHandler}>
         <img src={CancelIcon} alt="" />
       </div>
     </div>
