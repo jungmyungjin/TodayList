@@ -13,11 +13,11 @@
   box-shadow: 0 2px 5px rgba($color: #bababa12, $alpha: 1);
 
   // font 공통
-  & > div {
-    font-family: BagelFatOne;
+  font-family: BagelFatOne;
+  & > a {
     margin: 0px 20px;
     display: flex;
-    align-items: center;
+    text-decoration: none;
   }
 }
 
@@ -25,6 +25,7 @@
   // background-color: palegoldenrod;
   height: 100%;
   cursor: pointer;
+  align-items: center;
 
   .LogoIcon {
     font-size: 30px;
