@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Login.module.scss';
 import keyboardIcon from '../../assets/icons/LoginKeyboard.svg';
 import userIcon from '../../assets/icons/LoginUser.svg';
@@ -7,7 +8,9 @@ const Login = () => {
   return (
     <div className={styles.Layout}>
       <div className={styles.LoginLayout}>
-        <div className={styles.LoginTitle}>Today list</div>
+        <Link to="/login" className={styles.LoginTitle}>
+          Today list
+        </Link>
         <div className={styles.LoginFormLayout}>
           <div className={styles.LoginForm}>
             <div className={styles.LoginInputLayout}>
