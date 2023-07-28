@@ -1,0 +1,111 @@
+@import '../../styles/main.scss';
+
+.Layout {
+  @include center-xy;
+  width: 100%;
+  height: 100%;
+}
+
+.LoginLayout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 460px;
+}
+
+.LoginTitle {
+  font-family: BagelFatOne;
+  font-size: 50px;
+  color: $crimsonRed;
+  height: 240px;
+  width: 80%;
+  @include center-xy;
+}
+
+.LoginFormLayout {
+  height: 580px;
+  width: 100%;
+  padding: 80px 60px;
+  background-color: $cementGray;
+  box-shadow: 0 9px 8px -3px rgba(64, 60, 67, 0.24),
+    8px 0 8px -7px rgba(64, 60, 67, 0.24),
+    -8px 0 8px -7px rgba(64, 60, 67, 0.24);
+  border-radius: 20px;
+}
+
+.LoginForm {
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.LoginInputLayout {
+  display: flex;
+  flex-direction: column;
+  .LoginInput {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: none;
+    height: 46px;
+    margin-bottom: 20px;
+    background-color: white;
+    img {
+      margin: 0 13px 0 10px;
+      height: 30px;
+    }
+  }
+  input {
+    margin-left: auto;
+    width: 90%;
+    border-radius: inherit;
+    border: none;
+    height: 46px;
+    padding-left: 10px;
+    font-size: 21px;
+    font-weight: bold;
+  }
+  input[type='password'] {
+    letter-spacing: 1.5px;
+    font-size: 50px;
+  }
+  input:focus {
+    outline: 3px solid $redBeanPink;
+  }
+}
+
+.LoginButtons {
+  display: flex;
+  flex-direction: column;
+  button {
+    cursor: pointer;
+    height: 56px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+  }
+  .SiteLogin {
+    background-color: $crimsonRed;
+  }
+  .GtHubLogin {
+    background-color: $coalBrown;
+  }
+}
+
+.SignInButton {
+  color: $crimsonRed;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin: 0 20px 20px auto;
+  border: none;
+  font-size: 18px;
+  text-align: end;
+  font-weight: bold;
+  cursor: pointer;
+}
