@@ -22,7 +22,7 @@ const SignUp = () => {
           ) : (
             <span className={styles.SignUpErrorReason}>{signUpReason}</span>
           )}
-          <div className={styles.LoginForm}>
+          <form className={styles.LoginForm}>
             <div className={styles.LoginInputLayout}>
               <div className={styles.LoginInput}>
                 <img src={userIcon} alt="" />
@@ -40,12 +40,18 @@ const SignUp = () => {
               </div>
             </div>
             <div className={styles.RouteButtons}>
-              <button onClick={onClickGoBack} className={styles.SiteLogin}>
+              <button
+                type="button"
+                onClick={onClickGoBack}
+                className={styles.SiteLogin}
+              >
                 이전
               </button>
-              <button className={styles.GtHubLogin}>가입하기</button>
+              <button type="submit" className={styles.GtHubLogin}>
+                가입하기
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
