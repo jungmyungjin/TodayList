@@ -66,15 +66,18 @@
     border: none;
     height: 46px;
     padding-left: 10px;
-    font-size: 21px;
+    font-size: 22px;
     font-weight: bold;
   }
   input[type='password'] {
     letter-spacing: 1.5px;
-    font-size: 50px;
   }
   input:focus {
     outline: 3px solid $redBeanPink;
+  }
+  input::placeholder {
+    font-size: 18px;
+    color: $mouseGray;
   }
 }
 
