@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Main from '../../pages/Main/MainPage';
+import Main from '../../pages/MainPage';
 import styles from './Todo.module.scss';
 import AddIcon from '../../assets/icons/Add.svg';
 import CancelIcon from '../../assets/icons/Cancel.svg';
