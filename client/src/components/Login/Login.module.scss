@@ -78,7 +78,7 @@
   }
 }
 
-.LoginButtons {
+.RouteButtons {
   display: flex;
   flex-direction: column;
   button {
@@ -109,4 +109,5 @@
   text-align: end;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 }

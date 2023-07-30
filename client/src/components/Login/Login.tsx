@@ -24,7 +24,7 @@ const Login = () => {
                 <input type="password" />
               </div>
             </div>
-            <div className={styles.LoginButtons}>
+            <div className={styles.RouteButtons}>
               <button className={styles.SiteLogin}>로그인</button>
               <button className={styles.GtHubLogin}>
                 깃허브 계정으로 로그인하기
@@ -32,7 +32,9 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <button className={styles.SignInButton}>회원가입</button>
+        <Link to="/SignUp" className={styles.SignInButton}>
+          회원가입
+        </Link>
       </div>
     </div>
   );
