@@ -26,6 +26,7 @@
 }
 
 .LoginFormLayout {
+  position: relative;
   height: 580px;
   width: 100%;
   padding: 80px 60px;
@@ -113,4 +114,15 @@
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
+}
+
+.LoginErrorReason {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: $crimsonRed;
+  animation: 0.4s 0s horizontalShaking;
 }
