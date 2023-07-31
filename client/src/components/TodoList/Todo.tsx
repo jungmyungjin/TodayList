@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Main from '../../pages/MainPage';
+import Main from 'pages/MainPage';
 import styles from './Todo.module.scss';
-import AddIcon from '../../assets/icons/Add.svg';
-import CancelIcon from '../../assets/icons/Cancel.svg';
-import CheckIcon from '../../assets/icons/Check.svg';
+import AddIcon from 'assets/icons/Add.svg';
+import CancelIcon from 'assets/icons/Cancel.svg';
+import CheckIcon from 'assets/icons/Check.svg';
 import { DateTime } from 'luxon';
 
-import { TodoItem, TodoProps } from '../../types/TodoList';
+import { TodoItem, TodoProps } from 'types/TodoList';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { TodoDataState } from '../../recoil/atoms/todoDataState';
-import { todoDataAllState } from '../../recoil/selectors/todoDataSelector'; // import your atom and selector
-
-import { todoDataOneState } from '../../recoil/selectors/todoDataSelector';
+import { TodoDataState } from 'recoil/atoms/todoDataState';
+import { todoDataAllState } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
+import { todoDataOneState } from 'recoil/selectors/todoDataSelector';
 
 // TODO : svg 아이콘에 색상을 변경하려고 할때, 하드코딩 안하도록 변수로 입력 받도록 수정
 const Todo = ({

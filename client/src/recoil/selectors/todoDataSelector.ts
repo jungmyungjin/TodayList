@@ -1,6 +1,6 @@
 import { selector, selectorFamily } from 'recoil';
-import { TodoDataState } from '../atoms/todoDataState';
-import { TodoItem } from '../../types/TodoList';
+import { TodoDataState } from 'recoil/atoms/todoDataState';
+import { TodoItem } from 'types/TodoList';
 
 export const todoDataAllState = selector({
   key: 'todoDataAllState',

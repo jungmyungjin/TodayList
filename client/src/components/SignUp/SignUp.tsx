@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './SignUp.module.scss';
-import keyboardIcon from '../../assets/icons/LoginKeyboard.svg';
-import userIcon from '../../assets/icons/LoginUser.svg';
-import { validateSinUp } from '../../services/authService.ts/signUpService';
+import keyboardIcon from 'assets/icons/LoginKeyboard.svg';
+import userIcon from 'assets/icons/LoginUser.svg';
+import { validateSinUp } from 'services/authService.ts/signUpService';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ const SignUp = () => {
     const validateErrorReason = validateSinUp(email, password, confirmPassword);
 
     if (validateErrorReason === '') {
+      navigate('/');
       console.log('login 완료');
     } else {
       setSignUpErrorReason(validateErrorReason);

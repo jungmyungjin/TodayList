@@ -3,13 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import Todo from './Todo';
 import styles from './TodoList.module.scss';
-import { fetchTodoList } from '../../services/apiService/apiService';
-import AddIcon from '../../assets/icons/Add.svg';
+import { fetchTodoList } from 'services/apiService/apiService';
+import AddIcon from 'assets/icons/Add.svg';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { todoDataAllState } from '../../recoil/selectors/todoDataSelector'; // import your atom and selector
-import { TodoDataState } from '../../recoil/atoms/todoDataState';
-
-import { TodoItem } from '../../types/TodoList';
+import { todoDataAllState } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
+import { TodoDataState } from 'recoil/atoms/todoDataState';
+import { TodoItem } from 'types/TodoList';
 
 const TodoList = () => {
   const rawTodoData = fetchTodoList(); // API 불러오기

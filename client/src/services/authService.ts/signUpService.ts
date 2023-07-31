@@ -1,7 +1,4 @@
-import {
-  validateEmail,
-  validatePassword,
-} from '../../utils/validateCredentials';
+import { validateEmail, validatePassword } from 'utils/validateCredentials';
 
 /**
  * 회원 가입, 유효성 검증 후 에러메세지 반환

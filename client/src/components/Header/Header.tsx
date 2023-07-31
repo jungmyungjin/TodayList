@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
-import PenIcon from '../../assets/icons/Pen.svg';
+import PenIcon from 'assets/icons/Pen.svg';
 
-import UserIcon from '../../assets/icons/User.svg';
+import UserIcon from 'assets/icons/User.svg';
 
 const Header = () => {
   return (
