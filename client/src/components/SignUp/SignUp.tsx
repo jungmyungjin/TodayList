@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import styles from './SignUp.module.scss';
 import keyboardIcon from 'assets/icons/LoginKeyboard.svg';
 import userIcon from 'assets/icons/LoginUser.svg';
+import emailIcon from 'assets/icons/Email.svg';
+import keyIcon from 'assets/icons/Key.svg';
 import { validateSinUp } from 'services/authService.ts/signUpService';
+import { SignUpProps } from 'types/SignUp';
+import { fetchSignUp } from 'services/apiService/apiService';
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [signUpErrorReason, setSignUpErrorReason] = useState('');
   const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -16,13 +21,24 @@ const SignUp = () => {
     navigate(-1);
   };
 
-  const handleSubmitLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitSignUp = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
-    const validateErrorReason = validateSinUp(email, password, confirmPassword);
+    const validateErrorReason = validateSinUp({
+      email,
+      password,
+      confirmPassword,
+    } as SignUpProps);
 
     if (validateErrorReason === '') {
       navigate('/');
-      console.log('login 완료');
+      console.log('회원 가입 완료');
+      fetchSignUp({
+        email,
+        password,
+        confirmPassword,
+      } as SignUpProps);
     } else {
       setSignUpErrorReason(validateErrorReason);
     }
@@ -40,10 +56,10 @@ const SignUp = () => {
               {signUpErrorReason}
             </span>
           )}
-          <form onSubmit={handleSubmitLogin} className={styles.LoginForm}>
+          <form onSubmit={handleSubmitSignUp} className={styles.LoginForm}>
             <div className={styles.LoginInputLayout}>
               <div className={styles.LoginInput}>
-                <img src={userIcon} alt="" />
+                <img src={emailIcon} alt="" />
                 <input
                   id="email"
                   type="text"
@@ -55,7 +71,19 @@ const SignUp = () => {
                 />
               </div>
               <div className={styles.LoginInput}>
-                <img src={keyboardIcon} alt="" />
+                <img src={userIcon} alt="" />
+                <input
+                  id="full_name"
+                  type="text"
+                  placeholder="이름"
+                  autoFocus
+                  value={fullName}
+                  required
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+              </div>
+              <div className={styles.LoginInput}>
+                <img src={keyIcon} alt="" />
                 <input
                   id="password"
                   type="password"

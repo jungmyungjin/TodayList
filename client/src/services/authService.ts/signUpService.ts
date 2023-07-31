@@ -1,27 +1,22 @@
 import { validateEmail, validatePassword } from 'utils/validateCredentials';
+import { SignUpProps } from 'types/SignUp';
 
 /**
- * 회원 가입, 유효성 검증 후 에러메세지 반환
- * @param email
- * @param password
- * @param confirmPassword
+ *
+ * @param props {email, password, confirmPassword}
  * @returns string
  */
-export const validateSinUp = (
-  email: string,
-  password: string,
-  confirmPassword: string
-): string => {
-  if (!validateEmail(email)) {
+export const validateSinUp = (props: SignUpProps): string => {
+  if (!validateEmail(props.email)) {
     return '이메일 형식이 맞지 않습니다.';
   }
-  if (!validatePassword(password)) {
+  if (!validatePassword(props.password)) {
     return '패스워드 형식이 맞지 않습니다.';
   }
-  if (password !== confirmPassword) {
+  if (props.password !== props.confirmPassword) {
     return '비밀번호가 일치하지 않습니다.';
   }
-  if (email === '이메일 존재하는지 확인') {
+  if (props.email === '이메일 존재하는지 확인') {
     return '이미 사용중인 이메일 입니다.';
   }
   return '';
