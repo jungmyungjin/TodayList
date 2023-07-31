@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 // const { validationLogin } = require("./middlewares");
 const models = require("./src/models"); // index.js 파일 임포트
 
-const allowedOrigins = ""; // 모든 출처 허용, 추후 허용할 사이트만 따로 설정 필요
+const allowedOrigins = `http://${process.env.FRONTEND_ADDRESS}`; // 모든 출처 허용, 추후 허용할 사이트만 따로 설정 필요
 
 const corsOptions = {
   origin: allowedOrigins,
