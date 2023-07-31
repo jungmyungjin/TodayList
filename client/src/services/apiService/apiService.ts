@@ -2,6 +2,8 @@ import axios from 'axios';
 
 // 목업 데이터 =============================================================================
 import { TodoItem } from 'types/TodoList';
+import { SignUpProps, LoginProps } from 'types/Auth';
+
 const Mockup: TodoItem[] = [
   {
     id: 1,
@@ -57,7 +59,7 @@ const Mockup: TodoItem[] = [
 // ====================================================================================
 
 const apiClient = axios.create({
-  baseURL: `${process.env.REACT_APP_API_ADDRESS}/api`,
+  baseURL: `http://${process.env.REACT_APP_API_ADDRESS}/api`,
   timeout: 1000,
 });
 
@@ -66,12 +68,21 @@ export function fetchTodoList() {
   return Mockup;
 }
 
-export async function fetchLogin() {
+export async function fetchLogin(props: LoginProps) {
   try {
-    const response = await apiClient.get('/login');
-    return response.data;
+    const response = await apiClient.post('/login', props);
+    return response;
   } catch (error) {
     console.log('Failed to login', error);
+    throw error;
+  }
+}
+
+export async function fetchSignUp(props: SignUpProps) {
+  try {
+    const response = await apiClient.post('/signUp', props);
+    return response;
+  } catch (error) {
     throw error;
   }
 }

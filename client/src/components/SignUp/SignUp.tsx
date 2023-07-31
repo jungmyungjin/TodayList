@@ -6,7 +6,7 @@ import userIcon from 'assets/icons/LoginUser.svg';
 import emailIcon from 'assets/icons/Email.svg';
 import keyIcon from 'assets/icons/Key.svg';
 import { validateSinUp } from 'services/authService.ts/signUpService';
-import { SignUpProps } from 'types/SignUp';
+import { SignUpProps } from 'types/Auth';
 import { fetchSignUp } from 'services/apiService/apiService';
 
 const SignUp = () => {
@@ -27,20 +27,34 @@ const SignUp = () => {
     event.preventDefault();
     const validateErrorReason = validateSinUp({
       email,
+      full_name: fullName,
       password,
       confirmPassword,
     } as SignUpProps);
 
-    if (validateErrorReason === '') {
-      navigate('/');
-      console.log('회원 가입 완료');
-      fetchSignUp({
-        email,
-        password,
-        confirmPassword,
-      } as SignUpProps);
-    } else {
-      setSignUpErrorReason(validateErrorReason);
+    try {
+      if (validateErrorReason === '') {
+        const response = await fetchSignUp({
+          email,
+          full_name: fullName,
+          password,
+          confirmPassword,
+        } as SignUpProps);
+
+        console.log('회원 가입 완료', response);
+        navigate('/');
+      } else {
+        setSignUpErrorReason(validateErrorReason);
+      }
+    } catch (error: any) {
+      const [status, errorMessage] = [error.response.status, error.message];
+      if (status === 409) setSignUpErrorReason('이미 가입된 이메일입니다.');
+      if (status === 401)
+        setSignUpErrorReason(
+          '비밀번호는 문자, 숫자, 특수문자 포함 8자 이상이여야 합니다. '
+        );
+      if (status === 400)
+        setSignUpErrorReason('비어있는 입력 필드가 있습니다.');
     }
   };
 

@@ -1,5 +1,5 @@
 import { validateEmail, validatePassword } from 'utils/validateCredentials';
-import { SignUpProps } from 'types/SignUp';
+import { SignUpProps } from 'types/Auth';
 
 /**
  *
