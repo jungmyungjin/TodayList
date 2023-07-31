@@ -5,9 +5,7 @@ const { TaskController } = require("../controllers/index");
 
 task.get("/", TaskController.indexTask);
 
-task.post("/", (req, res) => {
-  res.send("✨ hello! I'm TodayList ✨");
-});
+task.post("/", TaskController.createTask);
 
 task.patch("/", (req, res) => {
   res.send("✨ hello! I'm TodayList ✨");

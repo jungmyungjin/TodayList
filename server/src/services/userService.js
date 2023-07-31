@@ -43,17 +43,21 @@ const findUser = async (email) => {
 };
 
 const createUser = async (req, res) => {
-  const { email, full_name, password } = req.body;
+  const { email, full_name, password, confirmPassword } = req.body;
   // 1. 입력받은 데이터 확인
-  console.log("👁 createUser ==> ", req.body, "||");
+  // console.log("👁 createUser ==> ", req.body, "||");
 
   // 2. 유효성확인
+
+  // 입력받은 데이터 확인
+  if (!email || !full_name || !password || !confirmPassword) {
+    throw new Error("services/userService/createUser:Required data not found");
+  }
   // 이메일 중복 확인
-  console.log("👁 userService : createUser ", email);
+  // console.log("👁 userService : createUser ", email);
   const foundUser = await findUser(email);
   if (foundUser) {
-    console.log("👁 userService : createUser Not NULL", findUser(email));
-    res.status(409); // Conflict
+    // console.log("👁 userService : createUser Not NULL", foundUser);
     throw new Error("services/userService/createUser:Registered Email");
   }
 
@@ -68,7 +72,7 @@ const createUser = async (req, res) => {
   };
 
   const createUser = await User.create(registerUser);
-  console.log("createUser : ", createUser);
+  // console.log("createUser : ", createUser);
   return { email: email, full_name: full_name };
 };
 

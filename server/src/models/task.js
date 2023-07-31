@@ -26,11 +26,12 @@ const Task = sequelize.define(
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: true,
     },
-    content: {
+    contents: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     status: {
+      // TODO, COMPLETE,
       type: DataTypes.STRING(20),
       allowNull: false,
     },

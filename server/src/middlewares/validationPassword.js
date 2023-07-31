@@ -13,12 +13,10 @@ const validationPassword = [
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/),
   (req, res, next) => {
     const errors = validationResult(req);
-    console.log("👁 after validationResult");
-    if (!errors.isEmpty()) {
-      console.log("👁 validationResult isEmpty");
-
-      console.error("[middleware] validationPassword", errors.array());
-      next(new Error(errors.array()));
+    // console.log("👁 after validationResult");
+    if (!errors.isEmpty() || req.body?.password !== req.body?.confirmPassword) {
+      // console.log("👁 validationResult isEmpty");
+      next(new Error("[middleware] validationPassword"));
     }
     next();
   },

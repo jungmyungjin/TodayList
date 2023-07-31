@@ -7,6 +7,6 @@ const userRouter = require("./userRouter");
 
 router.use("/hello", helloRouter);
 router.use("/task", taskRouter);
-router.use("/user", userRouter);
+router.use("/", userRouter);
 
 module.exports = router;

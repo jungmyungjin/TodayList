@@ -1,5 +1,5 @@
 const express = require("express");
-const { getTasks } = require("../../services/taskService");
+const { getTasks, createTasks } = require("../../services/taskService");
 const { errorHandler } = require("../../middlewares/index");
 
 class TaskController {
@@ -13,6 +13,9 @@ class TaskController {
   });
   createTask = errorHandler(async (req, res) => {
     // 코드 내용
+    console.log(req);
+    const newTask = await createTasks(req, res);
+    res.status(200).json(newTask);
   });
 
   updateTask = errorHandler(async (req, res) => {
