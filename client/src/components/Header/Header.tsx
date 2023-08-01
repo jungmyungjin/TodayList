@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 import PenIcon from 'assets/icons/Pen.svg';
 import UserIcon from 'assets/icons/User.svg';
 import LogoutIcon from 'assets/icons/Logout.svg';
-import { fetchUserInfo } from 'services/apiService/apiService';
+import { fetchUserInfo, fetchLogout } from 'services/apiService/apiService';
 
 const Header = () => {
   const [userName, setUserName] = useState('');
@@ -14,12 +14,16 @@ const Header = () => {
       try {
         const userData = await fetchUserInfo();
         setUserName(userData.full_name);
-        console.log('userData', userData);
       } catch (error) {
         console.error(error);
       }
     })();
   }, []);
+
+  const onClickLogout = () => {
+    fetchLogout();
+    window.location.replace('/');
+  };
 
   return (
     <div className={styles.LayoutHeader}>
@@ -30,7 +34,12 @@ const Header = () => {
       {userName && (
         <Link to="/" className={styles.LayoutLogin}>
           <div className={styles.LoginText}>hello, {userName}</div>
-          <img className={styles.LoginIcon} src={LogoutIcon} alt="login" />
+          <img
+            className={styles.LoginIcon}
+            src={LogoutIcon}
+            alt="logout"
+            onClick={onClickLogout}
+          />
         </Link>
       )}
       {!userName && (

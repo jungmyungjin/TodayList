@@ -82,6 +82,16 @@ export async function fetchLogin(props: LoginProps) {
   }
 }
 
+export async function fetchLogout() {
+  try {
+    const response = await apiClient.delete('/signOut');
+    return response;
+  } catch (error: any) {
+    console.log('Logout Error', error);
+    throw error;
+  }
+}
+
 export async function fetchSignUp(props: SignUpProps) {
   try {
     const response = await apiClient.post('/signUp', props);
@@ -93,8 +103,6 @@ export async function fetchSignUp(props: SignUpProps) {
 export async function fetchUserInfo() {
   try {
     const response = await apiClient.get('/user');
-    console.log('response', response);
-
     const userInfo = await response?.data;
     return userInfo;
   } catch (error) {
