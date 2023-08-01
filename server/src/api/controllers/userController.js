@@ -9,8 +9,11 @@ const { errorHandler } = require("../../middlewares/index");
 class UserController {
   login = errorHandler(async (req, res) => {
     const jwt = await loginUser(req, res);
-    res.cookie("token", jwt, { httpOnly: true });
-    res.status(200).json(jwt);
+    res.cookie("access_token", jwt, {
+      httpOnly: true,
+    });
+    res.status(200).json({ token: jwt });
+    res.end();
   });
 
   // 모든 작업을 표시하는 메서드
