@@ -23,7 +23,9 @@ class UserController {
   });
 
   showUser = errorHandler(async (req, res) => {
-    // 코드 내용
+    const userInfo = req?.userInfo || {};
+    res.status(200).json(userInfo);
+    res.end();
   });
 
   signUp = errorHandler(async (req, res) => {
