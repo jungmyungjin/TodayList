@@ -2,6 +2,7 @@ const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const { User } = require("../models/index");
 const { generateAccessToken, passwordHash } = require("./authService");
+const { ConflictError, UnauthorizedError } = require("../errors");
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -10,7 +11,10 @@ const loginUser = async (req, res) => {
   // 없는 아이디인 경우 에러처리
   const foundUser = await findUser(email);
   if (!foundUser) {
-    throw new Error(["login denied", "Invalid email"]);
+    throw new UnauthorizedError({
+      message: "SignIn denied",
+      detail: "Invalid email",
+    });
   }
 
   // 2. 비밀번호 해시 비교하여 비밀번호 검증
@@ -20,7 +24,10 @@ const loginUser = async (req, res) => {
     // 2-2. 비밀번호 매칭하기
     const match = await bcrypt.compare(password, foundUser.password);
     if (!match) {
-      throw new Error(["login denied", "Invalid password"]);
+      throw new UnauthorizedError({
+        message: "SignIn denied",
+        detail: "Invalid password",
+      });
     }
   }
   // 3. JWT 토큰 생성
@@ -51,14 +58,19 @@ const createUser = async (req, res) => {
 
   // 입력받은 데이터 확인
   if (!email || !full_name || !password || !confirmPassword) {
-    throw new Error("services/userService/createUser:Required data not found");
+    throw new UnauthorizedError({
+      message: "SignUp denied",
+      detail: "Required data is empty",
+    });
   }
   // 이메일 중복 확인
   // console.log("👁 userService : createUser ", email);
   const foundUser = await findUser(email);
   if (foundUser) {
-    // console.log("👁 userService : createUser Not NULL", foundUser);
-    throw new Error("services/userService/createUser:Registered Email");
+    throw new ConflictError({
+      message: "SignUp denied",
+      detail: "Already Signed Up Email",
+    });
   }
 
   // 3. password 해시화

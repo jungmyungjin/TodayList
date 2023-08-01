@@ -1,4 +1,5 @@
 const { check, validationResult } = require("express-validator");
+const { BadRequestError } = require("../errors");
 /**
  * 패스워드 유효성 검사
  * @param {*} requestHandler
@@ -16,7 +17,12 @@ const validationPassword = [
     // console.log("👁 after validationResult");
     if (!errors.isEmpty() || req.body?.password !== req.body?.confirmPassword) {
       // console.log("👁 validationResult isEmpty");
-      next(new Error("[middleware] validationPassword"));
+      next(
+        new BadRequestError({
+          message: "SignIn denied",
+          detail: "Password validation failed",
+        })
+      );
     }
     next();
   },

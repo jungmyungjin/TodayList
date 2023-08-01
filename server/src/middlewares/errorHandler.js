@@ -1,3 +1,8 @@
+const {
+  BadRequestError,
+  ConflictError,
+  UnauthorizedError,
+} = require("../errors");
 /**
  *
  * @param {*} requestHandler
@@ -7,33 +12,22 @@ const errorHandler = (requestHandler) => {
   return async (req, res, next) => {
     try {
       await requestHandler(req, res);
-    } catch (error) {
-      console.log("에러메시지", error.message);
-      switch (error.message) {
-        case "login denied,Invalid email":
-          console.log("400");
-          res.status(400);
-          break;
-        case "login denied,Invalid password":
-          console.log("401");
-          res.status(401);
-          break;
-        case "[middleware] validationPassword":
-          res.status(401);
-          break;
-        case "services/userService/createUser:Registered Email":
-          res.status(409); // Conflict
-          break;
-        case "services/userService/createUser:Required data not found":
-          res.status(400);
-          break;
-        // case "login denied":
-        //   res.status(401); // unauthorized
-        //   break;
-        default:
-          res.status(500); // Internal Server Error)
+    } catch (err) {
+      if (err instanceof BadRequestError) {
+        res
+          .status(err.statusCode)
+          .json({ message: err.message, detail: err.detail });
+      } else if (err instanceof UnauthorizedError) {
+        res
+          .status(err.statusCode)
+          .json({ message: err.message, detail: err.detail });
+      } else if (err instanceof ConflictError) {
+        res
+          .status(err.statusCode)
+          .json({ message: err.message, detail: err.detail });
+      } else {
+        res.status(500).json({ message: "An unexpected error occurred" });
       }
-      res.json(error);
     }
   };
 };

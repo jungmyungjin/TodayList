@@ -13,7 +13,6 @@ class TaskController {
   });
   createTask = errorHandler(async (req, res) => {
     // 코드 내용
-    console.log(req);
     const newTask = await createTasks(req, res);
     res.status(200).json(newTask);
   });
