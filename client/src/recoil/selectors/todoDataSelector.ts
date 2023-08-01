@@ -2,14 +2,14 @@ import { selector, selectorFamily } from 'recoil';
 import { TodoDataState } from 'recoil/atoms/todoDataState';
 import { TodoItem } from 'types/TodoList';
 
-export const todoDataAllState = selector({
-  key: 'todoDataAllState',
+export const todoDataAllSelector = selector({
+  key: 'todoDataAllSelector',
   get: ({ get }) => get(TodoDataState),
   set: ({ set }, newValue) => set(TodoDataState, newValue),
 });
 
-export const todoDataOneState = selectorFamily<TodoItem, number>({
-  key: 'todoDataOneState',
+export const todoDataOneSelector = selectorFamily<TodoItem, number>({
+  key: 'todoDataOneSelector',
   get:
     (idx: number) =>
     ({ get }) => {

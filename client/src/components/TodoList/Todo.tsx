@@ -9,8 +9,8 @@ import { DateTime } from 'luxon';
 import { TodoItem, TodoProps } from 'types/TodoList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TodoDataState } from 'recoil/atoms/todoDataState';
-import { todoDataAllState } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
-import { todoDataOneState } from 'recoil/selectors/todoDataSelector';
+import { todoDataAllSelector } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
+import { todoDataOneSelector } from 'recoil/selectors/todoDataSelector';
 
 // TODO : svg 아이콘에 색상을 변경하려고 할때, 하드코딩 안하도록 변수로 입력 받도록 수정
 const Todo = ({
@@ -23,8 +23,8 @@ const Todo = ({
   const [todoContents, setTodoContents] = useState(contents);
 
   const todoDataState = useRecoilValue(TodoDataState);
-  const [todoAll, setTodoAll] = useRecoilState(todoDataAllState);
-  const [todoOne, setTodoOne] = useRecoilState(todoDataOneState(idx));
+  const [todoAll, setTodoAll] = useRecoilState(todoDataAllSelector);
+  const [todoOne, setTodoOne] = useRecoilState(todoDataOneSelector(idx));
 
   useEffect(() => {
     setTodoContents(contents);

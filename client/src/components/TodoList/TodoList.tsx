@@ -6,7 +6,7 @@ import styles from './TodoList.module.scss';
 import { fetchTodoList } from 'services/apiService/apiService';
 import AddIcon from 'assets/icons/Add.svg';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { todoDataAllState } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
+import { todoDataAllSelector } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
 import { TodoDataState } from 'recoil/atoms/todoDataState';
 import { TodoItem } from 'types/TodoList';
 
@@ -14,7 +14,7 @@ const TodoList = () => {
   const rawTodoData = fetchTodoList(); // API 불러오기
   // const [todoLists, setTodoLists] = useState(rawTodoData); //
 
-  const [todoData, setTodoData] = useRecoilState(todoDataAllState);
+  const [todoData, setTodoData] = useRecoilState(todoDataAllSelector);
   const todoDataState = useRecoilValue(TodoDataState);
 
   // useEffect(() => {
