@@ -19,8 +19,8 @@ const validationPassword = [
       // console.log("👁 validationResult isEmpty");
       next(
         new BadRequestError({
-          message: "SignIn denied",
-          detail: "Password validation failed",
+          message: "Password validation failed",
+          detail: errors,
         })
       );
     }
