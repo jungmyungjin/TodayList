@@ -30,8 +30,8 @@ const Login = () => {
       navigate('/');
     } catch (error: any) {
       const [message, detail] = [
-        error.response.data?.message,
-        error.response.data?.detail,
+        error.response?.data?.message,
+        error.response?.data?.detail,
       ];
       if (message === 'SignIn denied')
         setLoginErrorReason('아이디 또는 비밀번호가 일치하지 않습니다.');
