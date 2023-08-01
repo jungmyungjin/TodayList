@@ -5,25 +5,34 @@ import keyboardIcon from 'assets/icons/LoginKeyboard.svg';
 import userIcon from 'assets/icons/LoginUser.svg';
 import { fetchLogin } from 'services/apiService/apiService';
 import { LoginProps } from 'types/Auth';
+import { validateSinIn } from 'services/authService.ts/signUpService';
 
 const Login = () => {
   const navigate = useNavigate();
   const [loginErrorReason, setLoginErrorReason] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [animationKey, setAnimationKey] = useState(0);
 
   const handleSubmitLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setAnimationKey(animationKey + 1);
+    const validateErrorReason = validateSinIn({
+      email,
+      password,
+    } as LoginProps);
+    if (validateErrorReason) {
+      setLoginErrorReason(validateErrorReason);
+      return;
+    }
     try {
-      const data: any = await fetchLogin({ email, password } as LoginProps);
-      console.log('로그인 완료', data);
+      const data = await fetchLogin({ email, password } as LoginProps);
       navigate('/');
     } catch (error: any) {
       const [message, detail] = [
         error.response.data?.message,
         error.response.data?.detail,
       ];
-
       if (message === 'SignIn denied')
         setLoginErrorReason('아이디 또는 비밀번호가 일치하지 않습니다.');
     }
@@ -40,10 +49,7 @@ const Login = () => {
               {loginErrorReason === '' ? (
                 ''
               ) : (
-                <span
-                  key={loginErrorReason}
-                  className={styles.LoginErrorReason}
-                >
+                <span key={animationKey} className={styles.LoginErrorReason}>
                   {loginErrorReason}
                 </span>
               )}

@@ -120,10 +120,11 @@
   position: absolute;
   width: 100%;
   left: 0px;
-  top: 40px;
+  top: 42px;
   text-align: center;
   font-weight: bold;
   color: $crimsonRed;
+  font-size: 16px;
   animation: 0.4s 0s horizontalShaking;
 }
 .LoginForm:invalid .SiteLogin {

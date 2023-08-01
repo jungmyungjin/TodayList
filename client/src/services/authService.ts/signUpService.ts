@@ -1,5 +1,5 @@
 import { validateEmail, validatePassword } from 'utils/validateCredentials';
-import { SignUpProps } from 'types/Auth';
+import { SignUpProps, LoginProps } from 'types/Auth';
 
 /**
  *
@@ -18,6 +18,16 @@ export const validateSinUp = (props: SignUpProps): string => {
   }
   if (props.email === '이메일 존재하는지 확인') {
     return '이미 사용중인 이메일 입니다.';
+  }
+  if (!props.full_name) {
+    return '비어있는 입력란이 있습니다.';
+  }
+  return '';
+};
+
+export const validateSinIn = (props: LoginProps): string => {
+  if (!validateEmail(props.email)) {
+    return '이메일 형식이 맞지 않습니다.';
   }
   return '';
 };
