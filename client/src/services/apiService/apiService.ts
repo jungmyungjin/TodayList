@@ -71,7 +71,10 @@ export function fetchTodoList() {
 
 export async function fetchLogin(props: LoginProps) {
   try {
-    const response = await apiClient.post('/signIn', props);
+    const response = await apiClient.post<{ data: { token: string } }>(
+      '/signIn',
+      props
+    );
     return response;
   } catch (error: any) {
     console.log('Failed to login', error);
@@ -83,6 +86,17 @@ export async function fetchSignUp(props: SignUpProps) {
   try {
     const response = await apiClient.post('/signUp', props);
     return response;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function fetchUserInfo() {
+  try {
+    const response = await apiClient.get('/user');
+    console.log('response', response);
+
+    const userInfo = await response?.data;
+    return userInfo;
   } catch (error) {
     throw error;
   }

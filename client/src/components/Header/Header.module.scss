@@ -45,6 +45,8 @@
 
 .LayoutLogin {
   cursor: pointer;
+  display: flex;
+  align-items: center;
   .LoginText {
     color: white;
     font-size: 20px;
@@ -52,5 +54,10 @@
   .LoginIcon {
     height: 30px;
     margin-left: 6px;
+  }
+  .LogoutIcon {
+    height: 35px;
+    margin-left: 20px;
+    // background-color: yellow;
   }
 }
