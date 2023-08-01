@@ -16,6 +16,7 @@ const SignUp = () => {
   const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [animationKey, setAnimationKey] = useState(0);
 
   const onClickGoBack = () => {
     navigate(-1);
@@ -25,6 +26,8 @@ const SignUp = () => {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+    setAnimationKey(animationKey + 1);
+
     const validateErrorReason = validateSinUp({
       email,
       full_name: fullName,
@@ -70,7 +73,7 @@ const SignUp = () => {
           {signUpErrorReason === '' ? (
             ''
           ) : (
-            <span key={signUpErrorReason} className={styles.SignUpErrorReason}>
+            <span key={animationKey} className={styles.SignUpErrorReason}>
               {signUpErrorReason}
             </span>
           )}
