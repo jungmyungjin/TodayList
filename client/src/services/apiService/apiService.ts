@@ -61,6 +61,7 @@ const Mockup: TodoItem[] = [
 const apiClient = axios.create({
   baseURL: `http://${process.env.REACT_APP_API_ADDRESS}/api`,
   timeout: 1000,
+  withCredentials: true,
 });
 
 export function fetchTodoList() {
