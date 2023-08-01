@@ -4,7 +4,7 @@ const { validationPassword } = require("../../middlewares/index");
 const { UserController } = require("../controllers/index");
 
 // 로그인
-user.post("/login", UserController.login);
+user.post("/signIn", UserController.login);
 
 // 회원가입
 user.post("/signUp", validationPassword, (req, res) => {
