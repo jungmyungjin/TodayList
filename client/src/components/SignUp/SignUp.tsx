@@ -47,13 +47,17 @@ const SignUp = () => {
         setSignUpErrorReason(validateErrorReason);
       }
     } catch (error: any) {
-      const [status, errorMessage] = [error.response.status, error.message];
-      if (status === 409) setSignUpErrorReason('이미 가입된 이메일입니다.');
-      if (status === 401)
+      const [message, detail] = [
+        error.response.data?.message,
+        error.response.data?.detail,
+      ];
+      if (detail === 'Already Signed Up Email')
+        setSignUpErrorReason('이미 가입된 이메일입니다.');
+      if (message === 'Password validation failed')
         setSignUpErrorReason(
           '비밀번호는 문자, 숫자, 특수문자 포함 8자 이상이여야 합니다. '
         );
-      if (status === 400)
+      if (detail === 'Required data is empty"')
         setSignUpErrorReason('비어있는 입력 필드가 있습니다.');
     }
   };
@@ -121,15 +125,15 @@ const SignUp = () => {
               </div>
             </div>
             <div className={styles.RouteButtons}>
+              <button type="submit" className={styles.SignUpLogin}>
+                가입하기
+              </button>
               <button
                 type="button"
                 onClick={onClickGoBack}
-                className={styles.SiteLogin}
+                className={styles.SiteBack}
               >
                 이전
-              </button>
-              <button type="submit" className={styles.SignUpLogin}>
-                가입하기
               </button>
             </div>
           </form>

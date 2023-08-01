@@ -14,29 +14,28 @@ const Login = () => {
 
   const handleSubmitLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     try {
       const data: any = await fetchLogin({ email, password } as LoginProps);
-
       console.log('로그인 완료', data);
       navigate('/');
     } catch (error: any) {
-      const [status, errorMessage] = [error.response.status, error.message];
+      const [message, detail] = [
+        error.response.data?.message,
+        error.response.data?.detail,
+      ];
 
-      if (status === 400) setLoginErrorReason('가입되지 않은 이메일입니다.');
-      if (status === 401) setLoginErrorReason('비밀번호가 맞지 않습니다.');
-
-      console.log('로그인 실패', status, errorMessage);
+      if (message === 'SignIn denied')
+        setLoginErrorReason('아이디 또는 비밀번호가 일치하지 않습니다.');
     }
   };
   return (
     <div className={styles.Layout}>
       <div className={styles.LoginLayout}>
-        <Link to="/login" className={styles.LoginTitle}>
+        <Link to="/" className={styles.LoginTitle}>
           Today list
         </Link>
-        <form onSubmit={handleSubmitLogin} className={styles.LoginFormLayout}>
-          <div className={styles.LoginForm}>
+        <div className={styles.LoginFormLayout}>
+          <form onSubmit={handleSubmitLogin} className={styles.LoginForm}>
             <div className={styles.LoginInputLayout}>
               {loginErrorReason === '' ? (
                 ''
@@ -55,6 +54,7 @@ const Login = () => {
                   placeholder="이메일"
                   autoFocus
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.LoginInput}>
@@ -64,6 +64,7 @@ const Login = () => {
                   type="password"
                   placeholder="비밀번호"
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -75,8 +76,8 @@ const Login = () => {
                 깃허브 계정으로 로그인하기
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
         <Link to="/SignUp" className={styles.SignInButton}>
           회원가입
         </Link>

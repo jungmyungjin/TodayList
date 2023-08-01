@@ -126,3 +126,7 @@
   color: $crimsonRed;
   animation: 0.4s 0s horizontalShaking;
 }
+.LoginForm:invalid .SiteLogin {
+  opacity: 0.65;
+  pointer-events: none;
+}
