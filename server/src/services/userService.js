@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const { User } = require("../models/index");
 const { generateAccessToken, passwordHash } = require("./authService");
 const { ConflictError, UnauthorizedError } = require("../errors");
+const jwt = require("jsonwebtoken");
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -88,8 +89,27 @@ const createUser = async (req, res) => {
   return { email: email, full_name: full_name };
 };
 
+const getUserInfo = async (req, res) => {
+  const token = req?.cookies?.access_token || "";
+  if (!token) {
+    return false;
+  }
+  return jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      console.log(5);
+
+      return res
+        .status(500)
+        .send({ auth: false, message: "Failed to authenticate token." });
+    }
+    // 검증된 토큰이라면, 토큰 내의 정보를 요청에 저장
+    return decoded?.data;
+  });
+};
+
 module.exports = {
   getUsers,
   createUser,
   loginUser,
+  getUserInfo,
 };

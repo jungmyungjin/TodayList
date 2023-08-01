@@ -6,13 +6,16 @@ const { UserController } = require("../controllers/index");
 // 로그인
 user.post("/signIn", UserController.login);
 
+// 로그아웃
+user.delete("/signOut", UserController.logout);
+
 // 회원가입
 user.post("/signUp", validationPassword, (req, res) => {
   UserController.signUp(req, res);
 });
 
 // 사용자 조회
-user.get("/user", verifyToken, UserController.showUser);
+user.get("/user", UserController.showUser);
 
 // 전체 사용자 조회
 user.get("/users", UserController.indexUser);
