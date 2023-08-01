@@ -44,7 +44,6 @@ const SignUp = () => {
           confirmPassword,
         } as SignUpProps);
 
-        console.log('회원 가입 완료', response);
         navigate('/');
       } else {
         setSignUpErrorReason(validateErrorReason);
