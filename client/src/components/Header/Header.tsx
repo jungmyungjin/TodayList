@@ -12,7 +12,7 @@ const Header = () => {
         <img className={styles.LogoIcon} src={PenIcon} alt="" />
         <div className={`${styles.LogoText} ${styles.Text}`}>Today list</div>
       </Link>
-      <Link to="/login" className={styles.LayoutLogin}>
+      <Link to="/signIn" className={styles.LayoutLogin}>
         <div className={styles.LoginText}>로그인</div>
         <img className={styles.LoginIcon} src={UserIcon} alt="" />
       </Link>

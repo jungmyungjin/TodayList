@@ -70,9 +70,9 @@ export function fetchTodoList() {
 
 export async function fetchLogin(props: LoginProps) {
   try {
-    const response = await apiClient.post('/login', props);
+    const response = await apiClient.post('/signIn', props);
     return response;
-  } catch (error) {
+  } catch (error: any) {
     console.log('Failed to login', error);
     throw error;
   }
