@@ -5,7 +5,10 @@ const routers = require("./src/api/routers/index");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-const allowedOrigins = `http://${process.env.FRONTEND_ADDRESS}`; // 모든 출처 허용, 추후 허용할 사이트만 따로 설정 필요
+const allowedOrigins = [
+  `${process.env.FRONTEND_ADDRESS}`,
+  "http://localhost:3000",
+]; // 모든 출처 허용, 추후 허용할 사이트만 따로 설정 필요
 
 const corsOptions = {
   origin: allowedOrigins,

@@ -11,6 +11,8 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - mynetwork
+    ports:
+      - "3306:3306"
 
   nodejs:
     image: node:14
@@ -22,11 +24,11 @@ services:
       - ..:/usr/src/app
     working_dir: /usr/src/app
     environment:
-      DB_HOST: ${TODAY_LIST_DB_HOST}
+      TODAY_LIST_DB_HOST: db
       DB_PORT: 3306
-      DB_USERNAME: ${TODAY_LIST_DB_USER}
-      DB_PASSWORD: ${TODAY_LIST_DB_PASSWORD}
-      DB_NAME: ${TODAY_LIST_DB_NAME}
+      TODAY_LIST_DB_NAME: ${TODAY_LIST_DB_NAME}
+      TODAY_LIST_DB_USER: ${TODAY_LIST_DB_USER}
+      TODAY_LIST_DB_PASSWORD: ${TODAY_LIST_DB_PASSWORD}
 
     command: bash -c "npm install && npm start"
     depends_on:
@@ -34,7 +36,7 @@ services:
     networks:
       - mynetwork
     ports:
-      - "3000:3000"
+      - ${TODAY_LIST_PORT}:${TODAY_LIST_PORT}
 
   nginx:
     image: nginx
