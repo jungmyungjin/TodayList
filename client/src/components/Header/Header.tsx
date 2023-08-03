@@ -27,12 +27,18 @@ const Header = () => {
 
   return (
     <div className={styles.LayoutHeader}>
-      <Link to="/" className={styles.LayoutLogo}>
+      <Link
+        to={`${process.env.REACT_APP_BASE_ROUTE}`}
+        className={styles.LayoutLogo}
+      >
         <img className={styles.LogoIcon} src={PenIcon} alt="" />
         <div className={`${styles.LogoText} ${styles.Text}`}>Today list</div>
       </Link>
       {userName && (
-        <Link to="/" className={styles.LayoutLogin}>
+        <Link
+          to={`${process.env.REACT_APP_BASE_ROUTE}`}
+          className={styles.LayoutLogin}
+        >
           <div className={styles.LoginText}>hello, {userName}</div>
           <img
             className={styles.LoginIcon}
@@ -43,7 +49,10 @@ const Header = () => {
         </Link>
       )}
       {!userName && (
-        <Link to="/signIn" className={styles.LayoutLogin}>
+        <Link
+          to={`${process.env.REACT_APP_BASE_ROUTE}/signIn`}
+          className={styles.LayoutLogin}
+        >
           <div className={styles.LoginText}>로그인</div>
           <img className={styles.LoginIcon} src={UserIcon} alt="login" />
         </Link>

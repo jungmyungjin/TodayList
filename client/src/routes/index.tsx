@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import MainPage from 'pages/MainPage';
-import LoginPage from 'pages/LoginPage';
-import SignUpPage from 'pages/SignUpPage';
 
-const router = createBrowserRouter([
+const MainPage = lazy(() => import('pages/MainPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const SignUpPage = lazy(() => import('pages/SignUpPage'));
+
+const baseRoute = process.env.REACT_APP_BASE_ROUTE;
+
+const routes = createBrowserRouter([
   {
-    path: '/',
+    path: `${baseRoute}/`,
     element: <MainPage />,
   },
   {
-    path: '/signIn',
+    path: `${baseRoute}/signIn`,
     element: <LoginPage />,
   },
   {
-    path: '/signUp',
+    path: `${baseRoute}/signUp`,
     element: <SignUpPage />,
   },
 ]);
 
-export default router;
+export default routes;

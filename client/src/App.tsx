@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import {
   RecoilRoot,
   atom,
@@ -9,7 +10,7 @@ import {
   useRecoilValue,
 } from 'recoil';
 
-import router from './routes';
+import routes from './routes';
 import Header from './components/Header/Header';
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
     <div>
       <React.StrictMode>
         <RecoilRoot>
-          <RouterProvider router={router} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <RouterProvider router={routes} />
+          </Suspense>
         </RecoilRoot>
       </React.StrictMode>
     </div>

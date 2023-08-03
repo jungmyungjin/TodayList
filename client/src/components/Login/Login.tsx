@@ -6,6 +6,7 @@ import userIcon from 'assets/icons/LoginUser.svg';
 import { fetchLogin } from 'services/apiService/apiService';
 import { LoginProps } from 'types/Auth';
 import { validateSinIn } from 'services/authService.ts/signUpService';
+import SignUp from 'components/SignUp/SignUp';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -84,7 +85,10 @@ const Login = () => {
             </div>
           </form>
         </div>
-        <Link to="/SignUp" className={styles.SignInButton}>
+        <Link
+          to={`${process.env.REACT_APP_BASE_ROUTE}/signUp`}
+          className={styles.SignInButton}
+        >
           회원가입
         </Link>
       </div>
