@@ -8,6 +8,7 @@ import { fetchUserInfo, fetchLogout } from 'services/apiService/apiService';
 
 const Header = () => {
   const [userName, setUserName] = useState('');
+
   useEffect(() => {
     // 즉시 실행 함수를 이용한 비동기 작업 수행
     (async () => {
@@ -22,7 +23,7 @@ const Header = () => {
 
   const onClickLogout = () => {
     fetchLogout();
-    window.location.replace('/');
+    window.location.replace(`${process.env.REACT_APP_BASE_ROUTE}`);
   };
 
   return (

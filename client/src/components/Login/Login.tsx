@@ -28,7 +28,7 @@ const Login = () => {
     }
     try {
       const data = await fetchLogin({ email, password } as LoginProps);
-      navigate('/');
+      navigate(`${process.env.REACT_APP_BASE_ROUTE}/`);
     } catch (error: any) {
       const [message, detail] = [
         error.response?.data?.message,

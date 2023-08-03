@@ -44,7 +44,7 @@ const SignUp = () => {
           confirmPassword,
         } as SignUpProps);
 
-        navigate('/');
+        navigate(`${process.env.REACT_APP_BASE_ROUTE}/`);
       } else {
         setSignUpErrorReason(validateErrorReason);
       }
