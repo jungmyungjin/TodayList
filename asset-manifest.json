@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/TodayList/static/css/main.b7f00be5.css",
-    "main.js": "/TodayList/static/js/main.be047968.js",
+    "main.js": "/TodayList/static/js/main.aeed50cf.js",
     "static/media/NanumGothicCoding-Bold.woff2": "/TodayList/static/media/NanumGothicCoding-Bold.396d31e405cad77d566b.woff2",
     "static/media/NanumGothicCoding-Regular.woff2": "/TodayList/static/media/NanumGothicCoding-Regular.c271c3537af8156b9352.woff2",
     "static/media/BagelFatOne-Regular.woff2": "/TodayList/static/media/BagelFatOne-Regular.928de6af7672ca4023b6.woff2",
@@ -17,10 +17,10 @@
     "static/media/Check.svg": "/TodayList/static/media/Check.94595b84c9989d93fa01e55d5612fc28.svg",
     "static/media/User.svg": "/TodayList/static/media/User.49db7e2a8b2815411dff6a67a49eaf2b.svg",
     "main.b7f00be5.css.map": "/TodayList/static/css/main.b7f00be5.css.map",
-    "main.be047968.js.map": "/TodayList/static/js/main.be047968.js.map"
+    "main.aeed50cf.js.map": "/TodayList/static/js/main.aeed50cf.js.map"
   },
   "entrypoints": [
     "static/css/main.b7f00be5.css",
-    "static/js/main.be047968.js"
+    "static/js/main.aeed50cf.js"
   ]
 }
