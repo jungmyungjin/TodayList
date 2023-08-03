@@ -1,0 +1,15 @@
+FROM node:14
+
+WORKDIR /usr/src/app
+
+# package.json 파일들을 복사
+COPY ../../package*.json ./
+
+RUN npm install
+
+# 현재 디렉토리의 모든 파일과 폴더를 복사
+COPY ../../ .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
