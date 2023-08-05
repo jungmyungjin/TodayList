@@ -18,7 +18,7 @@ services:
     image: node:14
     build:
       context: ../
-      dockerfile: ./deployment/nodejs/Dockerfile
+      dockerfile: ./deployment/nodejs/dockerfile
 
     volumes:
       - ..:/usr/src/app
