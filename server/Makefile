@@ -22,6 +22,9 @@ build:
 clean:
 	./deployment/tools/clean.sh
 
+deep_clean:
+	./deployment/tools/deepclean.sh
+
 ps:
 	docker-compose $(OPT) --env-file $(ENV_FILE) ps
 	
