@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const allowedOrigins = [
   `${process.env.FRONTEND_ADDRESS}`,
   "http://localhost:3000",
+  "https://kauth.kakao.com/oauth/authorize",
 ]; // 모든 출처 허용, 추후 허용할 사이트만 따로 설정 필요
 
 const corsOptions = {
