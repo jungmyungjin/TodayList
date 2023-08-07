@@ -3,6 +3,7 @@ const {
   getUsers,
   createUser,
   getUserInfo,
+  loginUser,
 } = require("../services/userService");
 
 const { errorHandler } = require("../../middlewares/index");
@@ -39,6 +40,10 @@ class UserController {
       email,
       full_name,
       password,
+    });
+    const jwt = await loginUser(createdUser);
+    res.cookie("access_token", jwt, {
+      httpOnly: true,
     });
     res.status(201).json(createdUser);
   });

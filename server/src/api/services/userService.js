@@ -39,10 +39,8 @@ const loginUser = async ({ email, password, type }) => {
 };
 
 const loginOAuth = async ({ email, full_name = "", type }) => {
-  // 1. 존재하는 아이디인지 확인
-  // 없는 아이디인 경우 회원 가입
+  // 존재하는 아이디인지 확인, 없는 아이디인 경우 회원 가입
   const foundUser = await findUser(email);
-
   if (!foundUser) {
     const registerUser = {
       email: email,
@@ -53,7 +51,7 @@ const loginOAuth = async ({ email, full_name = "", type }) => {
     const createUser = await User.create(registerUser);
   }
 
-  // 3. JWT 토큰 생성
+  // JWT 토큰 생성
   const jwt = generateAccessToken({
     email: foundUser.email,
     full_name: foundUser.full_name,
@@ -110,7 +108,7 @@ const createUser = async ({ email, full_name, password }) => {
   };
 
   const createdUser = await User.create(registerUser);
-  return { email: email, full_name: full_name };
+  return registerUser;
 };
 
 const getUserInfo = async (token) => {
