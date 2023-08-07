@@ -10,6 +10,10 @@ const User = sequelize.define(
       primaryKey: true,
       unique: "compositeIndex",
     },
+    type: {
+      type: DataTypes.ENUM("kakao"),
+      allowNull: true,
+    },
     full_name: {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -20,11 +24,26 @@ const User = sequelize.define(
     },
     password: {
       type: DataTypes.CHAR(60),
-      allowNull: false,
+      defaultValue: null,
+      allowNull: true,
     },
   },
   {
     timestamps: true,
+    hooks: {
+      beforeSave: (user, options) => {
+        const [type, password] = [
+          user?.dataValues?.type,
+          user?.dataValues?.password,
+        ];
+        if (type && password) {
+          throw new Error("Password must be null for OAuth type");
+        }
+        if (!type && !password) {
+          throw new Error("Password must not be null for general type");
+        }
+      },
+    },
   }
 );
 

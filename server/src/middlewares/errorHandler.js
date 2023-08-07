@@ -35,8 +35,13 @@ const errorHandler = (requestHandler) => {
           .json({ message: err.message, detail: err.detail })
           .end();
       } else {
-        console.log("500 ERROR!!!");
-        res.status(500).json({ message: "An unexpected error occurred" }).end();
+        res
+          .status(500)
+          .json({
+            message: "An unexpected error occurred",
+            detail: err.message,
+          })
+          .end();
       }
     }
   };

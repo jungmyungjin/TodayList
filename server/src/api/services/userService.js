@@ -9,7 +9,6 @@ const loginUser = async ({ email, password, type }) => {
   // 없는 아이디인 경우 에러처리
   const foundUser = await findUser(email);
   if (!foundUser) {
-    console.log("가입된 사용자아님!");
     throw new UnauthorizedError({
       message: "SignIn denied",
       detail: "Invalid email",
@@ -39,24 +38,52 @@ const loginUser = async ({ email, password, type }) => {
   return jwt;
 };
 
+const loginOAuth = async ({ email, full_name = "", type }) => {
+  // 1. 존재하는 아이디인지 확인
+  // 없는 아이디인 경우 회원 가입
+  const foundUser = await findUser(email);
+
+  if (!foundUser) {
+    const registerUser = {
+      email: email,
+      full_name: full_name,
+      type: type,
+    };
+
+    const createUser = await User.create(registerUser);
+  }
+
+  // 3. JWT 토큰 생성
+  const jwt = generateAccessToken({
+    email: foundUser.email,
+    full_name: foundUser.full_name,
+  });
+  return jwt;
+};
+
 const getUsers = async () => {
   const allUsers = await User.findAll();
   return allUsers;
 };
 
 const findUser = async (email) => {
-  const user = await User.findOne({ where: { email: email } });
-  return user;
+  try {
+    const user = await User.findOne({ where: { email: email } });
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 };
 
-const createUser = async ({ email, full_name, password, confirmPassword }) => {
+const createUser = async ({ email, full_name, password }) => {
   // 1. 입력받은 데이터 확인
-  // console.log("👁 createUser ==> ", req.body, "||");
+  // console.log("👁 createUser ==>", email, full_name, password);
 
   // 2. 유효성확인
 
   // 입력받은 데이터 확인
-  if (!email || !full_name || !password || !confirmPassword) {
+  if (!email || !full_name || !password) {
     throw new UnauthorizedError({
       message: "SignUp denied",
       detail: "Required data is empty",
@@ -82,8 +109,7 @@ const createUser = async ({ email, full_name, password, confirmPassword }) => {
     password: hashedPassword,
   };
 
-  const createUser = await User.create(registerUser);
-  // console.log("createUser : ", createUser);
+  const createdUser = await User.create(registerUser);
   return { email: email, full_name: full_name };
 };
 
@@ -99,4 +125,11 @@ const getUserInfo = async (token) => {
   return false;
 };
 
-module.exports = { loginUser, getUsers, findUser, createUser, getUserInfo };
+module.exports = {
+  loginUser,
+  getUsers,
+  findUser,
+  createUser,
+  getUserInfo,
+  loginOAuth,
+};

@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { errorHandler } = require("../../middlewares/index");
-const { loginUser } = require("../services/userService");
+const { loginUser, loginOAuth, findUser } = require("../services/userService");
 const {
   getKakaoAccessToken,
   getKaKaoUserInfoByToken,
@@ -13,8 +13,7 @@ class LoginController {
     res.cookie("access_token", jwt, {
       httpOnly: true,
     });
-    res.status(200).json({ token: jwt });
-    res.end();
+    return res.status(200).end();
   });
 
   loginKakao = errorHandler(async (req, res) => {
@@ -25,15 +24,12 @@ class LoginController {
       const email = userInfo?.kakao_account?.email;
       const full_name = userInfo?.properties?.nickname;
 
-      const jwt = await loginUser({ email, full_name, type: "kakao" });
+      const jwt = await loginOAuth({ email, full_name, type: "kakao" });
       res.cookie("access_token", jwt, {
         httpOnly: true,
       });
 
-      await res
-        .redirect(process.env.FRONTEND_ADDRESS)
-        .json({ token: jwt })
-        .end();
+      return res.redirect(process.env.FRONTEND_ADDRESS);
     } catch (error) {
       console.log(error.message);
     }

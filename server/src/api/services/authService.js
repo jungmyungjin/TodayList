@@ -17,7 +17,6 @@ const generateAccessToken = (data) => {
   const options = {
     expiresIn: "1h",
   };
-  console.log("payload = ", payload);
   const token = jwt.sign(payload, process.env.JWT_SECRET, options);
   return token;
 };

@@ -34,12 +34,11 @@ class UserController {
   // 회원 가입
   join = errorHandler(async (req, res) => {
     // 코드 내용
-    const { email, full_name, password, confirmPassword } = req.body;
+    const { email, full_name, password } = req.body;
     const createdUser = await createUser({
       email,
       full_name,
       password,
-      confirmPassword,
     });
     res.status(201).json(createdUser);
   });
