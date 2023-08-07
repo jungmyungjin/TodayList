@@ -3,7 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import keyboardIcon from 'assets/icons/LoginKeyboard.svg';
 import userIcon from 'assets/icons/LoginUser.svg';
-import { fetchLogin } from 'services/apiService/apiService';
+import kakaoImg from 'assets/images/kakao_login_large_wide.png';
+import axios from 'axios';
+
+import { fetchLogin, fetchLoginKakao } from 'services/apiService/apiService';
 import { LoginProps } from 'types/Auth';
 import { validateSinIn } from 'services/authService.ts/signUpService';
 import SignUp from 'components/SignUp/SignUp';
@@ -38,6 +41,12 @@ const Login = () => {
         setLoginErrorReason('아이디 또는 비밀번호가 일치하지 않습니다.');
     }
   };
+
+  const handleClickKakaoLogin = () => {
+    fetchLoginKakao();
+    window.location.href = fetchLoginKakao();
+  };
+
   return (
     <div className={styles.Layout}>
       <div className={styles.LoginLayout}>
@@ -79,8 +88,12 @@ const Login = () => {
               <button type="submit" className={styles.SiteLogin}>
                 로그인
               </button>
-              <button type="button" className={styles.GtHubLogin}>
-                깃허브 계정으로 로그인하기
+              <button
+                type="button"
+                className={styles.KakaoLogin}
+                onClick={handleClickKakaoLogin}
+              >
+                <img src={kakaoImg} alt="카카오로 로그인하기" />
               </button>
             </div>
           </form>

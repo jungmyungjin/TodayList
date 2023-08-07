@@ -72,8 +72,8 @@ export function fetchTodoList() {
 export async function fetchLogin(props: LoginProps) {
   try {
     const response = await apiClient.post<{ data: { token: string } }>(
-      '/signIn',
-      props
+      '/auth/login',
+      { ...props, type: 'standard' }
     );
     return response;
   } catch (error: any) {
@@ -84,7 +84,7 @@ export async function fetchLogin(props: LoginProps) {
 
 export async function fetchLogout() {
   try {
-    const response = await apiClient.delete('/signOut');
+    const response = await apiClient.delete('/auth/logout');
     return response;
   } catch (error: any) {
     console.log('Logout Error', error);
@@ -94,7 +94,7 @@ export async function fetchLogout() {
 
 export async function fetchSignUp(props: SignUpProps) {
   try {
-    const response = await apiClient.post('/signUp', props);
+    const response = await apiClient.post('/auth/join', props);
     return response;
   } catch (error) {
     throw error;
@@ -102,10 +102,18 @@ export async function fetchSignUp(props: SignUpProps) {
 }
 export async function fetchUserInfo() {
   try {
-    const response = await apiClient.get('/user');
+    const response = await apiClient.get('/auth/user');
     const userInfo = await response?.data;
     return userInfo;
   } catch (error) {
     throw error;
   }
+}
+
+export function fetchLoginKakao(): string {
+  const redirectUri = `${process.env.REACT_APP_API_ADDRESS}/api/auth/kakao`;
+  const clientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
+
+  return kakaoURL;
 }

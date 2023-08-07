@@ -38,7 +38,7 @@
 }
 
 .LoginForm {
-  height: 370px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,6 +85,8 @@
 .RouteButtons {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100%;
   button {
     cursor: pointer;
     height: 56px;
@@ -97,8 +99,10 @@
   .SiteLogin {
     background-color: $crimsonRed;
   }
-  .GtHubLogin {
-    background-color: $coalBrown;
+  .KakaoLogin {
+    img {
+      width: inherit;
+    }
   }
 }
 
