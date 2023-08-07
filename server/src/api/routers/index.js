@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const helloRouter = require("./helloRouter");
+const healthCheck = require("./healthCheck");
 const taskRouter = require("./taskRouter");
 const userRouter = require("./userRouter");
 
-router.use("/hello", helloRouter);
 router.use("/task", taskRouter);
-router.use("/", userRouter);
+router.use("/auth", userRouter);
+router.use("/healthCheck", healthCheck);
 
 module.exports = router;

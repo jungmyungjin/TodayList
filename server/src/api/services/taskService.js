@@ -1,4 +1,4 @@
-const { Task } = require("../models/index");
+const { Task } = require("../../models/index");
 
 const getTasks = async () => {
   const tasks = await Task.findAll();
@@ -16,7 +16,4 @@ const createTasks = async (req, res) => {
   return newTask;
 };
 
-module.exports = {
-  getTasks,
-  createTasks,
-};
+module.exports = { getTasks, createTasks };

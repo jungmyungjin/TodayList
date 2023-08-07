@@ -1,5 +1,5 @@
 const express = require("express");
-const { getTasks, createTasks } = require("../../services/taskService");
+const { getTasks, createTasks } = require("../services/taskService");
 const { errorHandler } = require("../../middlewares/index");
 
 class TaskController {

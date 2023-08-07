@@ -2,6 +2,7 @@ const {
   BadRequestError,
   ConflictError,
   UnauthorizedError,
+  InternalServerError,
 } = require("../errors");
 /**
  *
@@ -16,17 +17,26 @@ const errorHandler = (requestHandler) => {
       if (err instanceof BadRequestError) {
         res
           .status(err.statusCode)
-          .json({ message: err.message, detail: err.detail });
+          .json({ message: err.message, detail: err.detail })
+          .end();
       } else if (err instanceof UnauthorizedError) {
         res
           .status(err.statusCode)
-          .json({ message: err.message, detail: err.detail });
+          .json({ message: err.message, detail: err.detail })
+          .end();
       } else if (err instanceof ConflictError) {
         res
           .status(err.statusCode)
-          .json({ message: err.message, detail: err.detail });
+          .json({ message: err.message, detail: err.detail })
+          .end();
+      } else if (err instanceof InternalServerError) {
+        res
+          .status(err.statusCode)
+          .json({ message: err.message, detail: err.detail })
+          .end();
       } else {
-        res.status(500).json({ message: "An unexpected error occurred" });
+        console.log("500 ERROR!!!");
+        res.status(500).json({ message: "An unexpected error occurred" }).end();
       }
     }
   };

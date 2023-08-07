@@ -1,17 +1,15 @@
-const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
-const { User } = require("../models/index");
+const { User } = require("../../models/index");
 const { generateAccessToken, passwordHash } = require("./authService");
-const { ConflictError, UnauthorizedError } = require("../errors");
+const { ConflictError, UnauthorizedError } = require("../../errors");
 const jwt = require("jsonwebtoken");
 
-const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-
+const loginUser = async ({ email, password, type }) => {
   // 1. 존재하는 아이디인지 확인
   // 없는 아이디인 경우 에러처리
   const foundUser = await findUser(email);
   if (!foundUser) {
+    console.log("가입된 사용자아님!");
     throw new UnauthorizedError({
       message: "SignIn denied",
       detail: "Invalid email",
@@ -20,10 +18,11 @@ const loginUser = async (req, res) => {
 
   // 2. 비밀번호 해시 비교하여 비밀번호 검증
   // 패스워드 안맞는 경우 에러처리
-  {
+  if (type === "standard") {
     // 2-1. DB에서 비밀번호 꺼내오기
     // 2-2. 비밀번호 매칭하기
     const match = await bcrypt.compare(password, foundUser.password);
+
     if (!match) {
       throw new UnauthorizedError({
         message: "SignIn denied",
@@ -31,6 +30,7 @@ const loginUser = async (req, res) => {
       });
     }
   }
+
   // 3. JWT 토큰 생성
   const jwt = generateAccessToken({
     email: foundUser.email,
@@ -46,12 +46,10 @@ const getUsers = async () => {
 
 const findUser = async (email) => {
   const user = await User.findOne({ where: { email: email } });
-  console.log(user);
   return user;
 };
 
-const createUser = async (req, res) => {
-  const { email, full_name, password, confirmPassword } = req.body;
+const createUser = async ({ email, full_name, password, confirmPassword }) => {
   // 1. 입력받은 데이터 확인
   // console.log("👁 createUser ==> ", req.body, "||");
 
@@ -89,27 +87,16 @@ const createUser = async (req, res) => {
   return { email: email, full_name: full_name };
 };
 
-const getUserInfo = async (req, res) => {
-  const token = req?.cookies?.access_token || "";
+const getUserInfo = async (token) => {
   if (!token) {
     return false;
   }
-  return jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      console.log(5);
-
-      return res
-        .status(500)
-        .send({ auth: false, message: "Failed to authenticate token." });
-    }
-    // 검증된 토큰이라면, 토큰 내의 정보를 요청에 저장
-    return decoded?.data;
-  });
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    console.log(error.message);
+  }
+  return false;
 };
 
-module.exports = {
-  getUsers,
-  createUser,
-  loginUser,
-  getUserInfo,
-};
+module.exports = { loginUser, getUsers, findUser, createUser, getUserInfo };
