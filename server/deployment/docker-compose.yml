@@ -13,6 +13,11 @@ services:
       - mynetwork
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
 
   nodejs:
     image: node:14
@@ -32,7 +37,8 @@ services:
 
     command: bash -c "npm install && npm start"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - mynetwork
     ports:
