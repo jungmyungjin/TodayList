@@ -73,7 +73,7 @@ export async function fetchLogin(props: LoginProps) {
   try {
     const response = await apiClient.post<{ data: { token: string } }>(
       '/auth/login',
-      { ...props, type: 'standard' }
+      { ...props }
     );
     return response;
   } catch (error: any) {
