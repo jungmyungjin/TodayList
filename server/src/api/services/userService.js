@@ -4,7 +4,7 @@ const { generateAccessToken, passwordHash } = require("./authService");
 const { ConflictError, UnauthorizedError } = require("../../errors");
 const jwt = require("jsonwebtoken");
 
-const loginUser = async ({ email, password, type }) => {
+const loginUser = async ({ email, password }) => {
   // 1. 존재하는 아이디인지 확인
   // 없는 아이디인 경우 에러처리
   const foundUser = await findUser(email);
@@ -17,17 +17,15 @@ const loginUser = async ({ email, password, type }) => {
 
   // 2. 비밀번호 해시 비교하여 비밀번호 검증
   // 패스워드 안맞는 경우 에러처리
-  if (type === "standard") {
-    // 2-1. DB에서 비밀번호 꺼내오기
-    // 2-2. 비밀번호 매칭하기
-    const match = await bcrypt.compare(password, foundUser.password);
+  // 2-1. DB에서 비밀번호 꺼내오기
+  // 2-2. 비밀번호 매칭하기
+  const match = await bcrypt.compare(password, foundUser.password);
 
-    if (!match) {
-      throw new UnauthorizedError({
-        message: "SignIn denied",
-        detail: "Invalid password",
-      });
-    }
+  if (!match) {
+    throw new UnauthorizedError({
+      message: "SignIn denied",
+      detail: "Invalid password",
+    });
   }
 
   // 3. JWT 토큰 생성

@@ -8,8 +8,8 @@ const {
 
 class LoginController {
   login = errorHandler(async (req, res) => {
-    const { email, full_name, password, type } = req.body;
-    const jwt = await loginUser({ email, full_name, password, type });
+    const { email, full_name, password } = req.body;
+    const jwt = await loginUser({ email, full_name, password });
     res.cookie("access_token", jwt, {
       httpOnly: true,
     });
