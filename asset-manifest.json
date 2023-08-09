@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/TodayList/static/js/main.a66c1c01.js",
+    "main.js": "/TodayList/static/js/main.98ea8616.js",
     "static/css/863.9acd3f22.chunk.css": "/TodayList/static/css/863.9acd3f22.chunk.css",
     "static/js/863.2ad6623d.chunk.js": "/TodayList/static/js/863.2ad6623d.chunk.js",
     "static/css/726.a03b1b79.chunk.css": "/TodayList/static/css/726.a03b1b79.chunk.css",
-    "static/js/726.aa2e679f.chunk.js": "/TodayList/static/js/726.aa2e679f.chunk.js",
+    "static/js/726.e8a2bcb8.chunk.js": "/TodayList/static/js/726.e8a2bcb8.chunk.js",
     "static/css/669.e7889415.chunk.css": "/TodayList/static/css/669.e7889415.chunk.css",
     "static/js/669.a6406108.chunk.js": "/TodayList/static/js/669.a6406108.chunk.js",
     "static/js/243.e5fa3185.chunk.js": "/TodayList/static/js/243.e5fa3185.chunk.js",
@@ -24,11 +24,11 @@
     "static/media/Email.svg": "/TodayList/static/media/Email.9c80a013d1ae7efa442b54d1a3dc3d73.svg",
     "static/media/Check.svg": "/TodayList/static/media/Check.94595b84c9989d93fa01e55d5612fc28.svg",
     "static/media/User.svg": "/TodayList/static/media/User.49db7e2a8b2815411dff6a67a49eaf2b.svg",
-    "main.a66c1c01.js.map": "/TodayList/static/js/main.a66c1c01.js.map",
+    "main.98ea8616.js.map": "/TodayList/static/js/main.98ea8616.js.map",
     "863.9acd3f22.chunk.css.map": "/TodayList/static/css/863.9acd3f22.chunk.css.map",
     "863.2ad6623d.chunk.js.map": "/TodayList/static/js/863.2ad6623d.chunk.js.map",
     "726.a03b1b79.chunk.css.map": "/TodayList/static/css/726.a03b1b79.chunk.css.map",
-    "726.aa2e679f.chunk.js.map": "/TodayList/static/js/726.aa2e679f.chunk.js.map",
+    "726.e8a2bcb8.chunk.js.map": "/TodayList/static/js/726.e8a2bcb8.chunk.js.map",
     "669.e7889415.chunk.css.map": "/TodayList/static/css/669.e7889415.chunk.css.map",
     "669.a6406108.chunk.js.map": "/TodayList/static/js/669.a6406108.chunk.js.map",
     "243.e5fa3185.chunk.js.map": "/TodayList/static/js/243.e5fa3185.chunk.js.map",
@@ -36,6 +36,6 @@
     "917.c5c1846f.chunk.js.map": "/TodayList/static/js/917.c5c1846f.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.a66c1c01.js"
+    "static/js/main.98ea8616.js"
   ]
 }
