@@ -16,7 +16,6 @@ const sequelize = new Sequelize(
         /EHOSTUNREACH/,
         /ECONNRESET/,
         /ECONNREFUSED/,
-        /ETIMEDOUT/,
         /ESOCKETTIMEDOUT/,
         /EAI_AGAIN/,
       ],
