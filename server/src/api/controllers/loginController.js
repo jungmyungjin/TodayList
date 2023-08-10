@@ -29,7 +29,7 @@ class LoginController {
         httpOnly: true,
       });
 
-      return res.status(200).end();
+      return res.redirect(process.env.FRONTEND_ADDRESS);
     } catch (error) {
       console.log(error.message);
     }
