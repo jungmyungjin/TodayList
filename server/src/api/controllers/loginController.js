@@ -11,7 +11,11 @@ class LoginController {
     const { email, full_name, password } = req.body;
     const jwt = await loginUser({ email, full_name, password });
     res.cookie("access_token", jwt, {
+      path: "/",
+      domain: process.env.TODAY_LIST_DOMAIN,
       httpOnly: true,
+      sameSite: "none",
+      secure: true,
     });
     return res.status(200).end();
   });
