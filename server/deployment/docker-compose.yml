@@ -13,18 +13,6 @@ services:
       - mynetwork
     ports:
       - "3306:3306"
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "healthcheck.sh",
-          "--su-mysql",
-          "--connect",
-          "--innodb_initialized",
-        ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
 
   nodejs:
     image: node:14
@@ -41,8 +29,7 @@ services:
       TODAY_LIST_DB_NAME: ${TODAY_LIST_DB_NAME}
       TODAY_LIST_DB_USER: ${TODAY_LIST_DB_USER}
       TODAY_LIST_DB_PASSWORD: ${TODAY_LIST_DB_PASSWORD}
-
-    command: bash -c "/usr/local/bin/wait-for-it.sh db:3306 -- npm install && npm start"
+    command: bash -c "npm install && npm start"
     depends_on:
       - db
     networks:

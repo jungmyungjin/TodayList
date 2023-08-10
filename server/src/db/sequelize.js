@@ -10,6 +10,18 @@ const sequelize = new Sequelize(
   {
     host: process.env.TODAY_LIST_DB_HOST,
     dialect: "mariadb",
+    retry: {
+      match: [
+        /ETIMEDOUT/,
+        /EHOSTUNREACH/,
+        /ECONNRESET/,
+        /ECONNREFUSED/,
+        /ETIMEDOUT/,
+        /ESOCKETTIMEDOUT/,
+        /EAI_AGAIN/,
+      ],
+      max: 5, // 재시도 횟수 설정
+    },
   }
 );
 
