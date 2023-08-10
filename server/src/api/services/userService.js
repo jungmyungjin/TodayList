@@ -33,6 +33,7 @@ const loginUser = async ({ email, password }) => {
     email: foundUser.email,
     full_name: foundUser.full_name,
   });
+
   return jwt;
 };
 
@@ -113,12 +114,7 @@ const getUserInfo = async (token) => {
   if (!token) {
     return false;
   }
-  try {
-    return jwt.verify(token, process.env.JWT_SECRET);
-  } catch (error) {
-    console.log(error.message);
-  }
-  return false;
+  return jwt.verify(token, process.env.JWT_SECRET);
 };
 
 module.exports = {

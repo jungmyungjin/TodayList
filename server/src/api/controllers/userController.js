@@ -5,6 +5,7 @@ const {
   getUserInfo,
   loginUser,
 } = require("../services/userService");
+const { generateAccessToken } = require("../services/authService");
 
 const { errorHandler } = require("../../middlewares/index");
 
@@ -49,7 +50,10 @@ class UserController {
       full_name,
       password,
     });
-    const jwt = await loginUser(createdUser);
+    const jwt = await generateAccessToken({
+      email: email,
+      full_name: full_name,
+    });
     res.cookie("access_token", jwt, {
       path: "/",
       domain: process.env.TODAY_LIST_DOMAIN,
@@ -57,7 +61,7 @@ class UserController {
       sameSite: "none",
       secure: true,
     });
-    res.status(201).json(createdUser);
+    return res.status(201).json(createdUser).end();
   });
 
   updateUser = errorHandler(async (req, res) => {
