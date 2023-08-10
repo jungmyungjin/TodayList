@@ -12,12 +12,12 @@ user.get("/kakao", (req, res) => {
 user.delete("/logout", UserController.logout);
 
 // 회원가입
-user.post("/join", validationPassword, (req, res) => {
+user.post("/join", (req, res) => {
   UserController.join(req, res);
 });
 
 // 사용자 조회
-user.get("/user", UserController.showUser);
+user.get("/user", verifyToken, UserController.showUser);
 
 // 전체 사용자 조회
 user.get("/users", UserController.indexUser);

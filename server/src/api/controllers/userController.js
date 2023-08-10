@@ -12,7 +12,16 @@ class UserController {
   // 로그아웃
   logout = errorHandler(async (req, res) => {
     // 코드 내용
-    res.clearCookie("access_token").status(205).end();
+    res
+      .clearCookie("access_token", {
+        path: "/",
+        domain: process.env.TODAY_LIST_DOMAIN,
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      })
+      .status(204)
+      .end();
   });
 
   // 전체 사용자 조회
@@ -25,11 +34,10 @@ class UserController {
   showUser = errorHandler(async (req, res) => {
     const token = req?.cookies?.access_token || "";
     const userInfo = await getUserInfo(token);
-
     if (!userInfo) {
       return res.status(204).send();
     }
-    return res.status(200).json(userInfo).end();
+    return res.status(200).json(userInfo?.data).end();
   });
 
   // 회원 가입
@@ -43,7 +51,11 @@ class UserController {
     });
     const jwt = await loginUser(createdUser);
     res.cookie("access_token", jwt, {
+      path: "/",
+      domain: process.env.TODAY_LIST_DOMAIN,
       httpOnly: true,
+      sameSite: "none",
+      secure: true,
     });
     res.status(201).json(createdUser);
   });

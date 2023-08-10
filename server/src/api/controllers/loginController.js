@@ -27,7 +27,7 @@ class LoginController {
       const jwt = await loginOAuth({ email, full_name, type: "kakao" });
       res.cookie("access_token", jwt, {
         path: "/",
-        domain: ".duckkuri.com",
+        domain: process.env.TODAY_LIST_DOMAIN,
         httpOnly: true,
         sameSite: "none",
         secure: true,
