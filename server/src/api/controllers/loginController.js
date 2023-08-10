@@ -33,7 +33,7 @@ class LoginController {
         secure: true,
       });
 
-      return res.redirect(process.env.FRONTEND_ADDRESS);
+      return res.redirect(process.env.FRONTEND_ADDRESS + "/TodayList");
     } catch (error) {
       console.log(error.message);
     }
