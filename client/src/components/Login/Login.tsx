@@ -45,7 +45,6 @@ const Login = () => {
   const handleClickKakaoLogin = () => {
     fetchLoginKakao();
     window.location.href = fetchLoginKakao();
-    navigate(`${process.env.REACT_APP_BASE_ROUTE}/`);
   };
 
   return (
