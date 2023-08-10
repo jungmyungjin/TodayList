@@ -20,6 +20,7 @@ const sequelize = new Sequelize(
         /EAI_AGAIN/,
       ],
       max: 5, // 재시도 횟수 설정
+      timeout: 60000, // 1분
     },
   }
 );
