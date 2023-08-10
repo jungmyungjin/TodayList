@@ -9,4 +9,8 @@ RUN npm install
 
 EXPOSE 3000
 
+COPY ./deployment/nodejs/wait-for-it.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
+
 CMD ["npm", "start"]
