@@ -7,7 +7,7 @@ const Task = sequelize.define(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
+      // autoIncrement: true,
       primaryKey: true,
       unique: "compositeIndex",
     },

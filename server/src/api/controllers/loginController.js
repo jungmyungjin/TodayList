@@ -5,6 +5,7 @@ const {
   getKakaoAccessToken,
   getKaKaoUserInfoByToken,
 } = require("../services/kakaoService");
+const { InternalServerError } = require("../../errors");
 
 class LoginController {
   login = errorHandler(async (req, res) => {
@@ -30,16 +31,19 @@ class LoginController {
 
       const jwt = await loginOAuth({ email, full_name, type: "kakao" });
       res.cookie("access_token", jwt, {
+        httpOnly: true,
         path: "/",
         domain: process.env.TODAY_LIST_DOMAIN,
-        httpOnly: true,
         sameSite: "none",
         secure: true,
       });
 
       return res.redirect(process.env.FRONTEND_ADDRESS + "/TodayList");
     } catch (error) {
-      console.log(error.message);
+      throw new InternalServerError({
+        message: "Kakao Login Error " + error.message,
+        detail: error.message,
+      });
     }
   });
 }

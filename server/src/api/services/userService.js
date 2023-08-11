@@ -32,6 +32,7 @@ const loginUser = async ({ email, password }) => {
   const jwt = generateAccessToken({
     email: foundUser.email,
     full_name: foundUser.full_name,
+    user_id: foundUser.id,
   });
 
   return jwt;
@@ -54,6 +55,7 @@ const loginOAuth = async ({ email, full_name = "", type }) => {
   const jwt = generateAccessToken({
     email: foundUser.email,
     full_name: foundUser.full_name,
+    user_id: foundUser.id,
   });
   return jwt;
 };

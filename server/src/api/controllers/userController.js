@@ -53,6 +53,7 @@ class UserController {
     const jwt = await generateAccessToken({
       email: email,
       full_name: full_name,
+      user_id: foundUser.id,
     });
     res.cookie("access_token", jwt, {
       path: "/",
