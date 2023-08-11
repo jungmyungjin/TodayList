@@ -7,7 +7,7 @@ import { SignUpProps, LoginProps } from 'types/Auth';
 const Mockup: TodoItem[] = [
   {
     id: 1,
-    user_id: 1,
+    user_id: 2,
     parents_id: null,
     contents: '백엔드 마무리',
     status: 'TODO',
@@ -17,7 +17,7 @@ const Mockup: TodoItem[] = [
   },
   {
     id: 2,
-    user_id: 1,
+    user_id: 2,
     parents_id: null,
     contents: '일찍 일어나기',
     status: 'CHECKED',
@@ -27,7 +27,7 @@ const Mockup: TodoItem[] = [
   },
   {
     id: 3,
-    user_id: 1,
+    user_id: 2,
     parents_id: null,
     contents: '일찍 일어나기',
     status: 'TODO',
@@ -37,7 +37,7 @@ const Mockup: TodoItem[] = [
   },
   {
     id: 4,
-    user_id: 1,
+    user_id: 2,
     parents_id: 3,
     contents: '일찍 자기',
     status: 'TODO',
@@ -46,8 +46,8 @@ const Mockup: TodoItem[] = [
     updatedAt: '2023-07-21T08:09:49.000Z',
   },
   {
-    id: 4,
-    user_id: 1,
+    id: 5,
+    user_id: 2,
     parents_id: 3,
     contents: ' 전날 일찍 저녁 먹기',
     status: 'CHECKED',
@@ -116,4 +116,16 @@ export function fetchLoginKakao(): string {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
 
   return kakaoURL;
+}
+
+/// Task
+
+export async function fetchTask(todoData: TodoItem[]) {
+  try {
+    const response = await apiClient.post('/task', todoData);
+    return response;
+  } catch (error: any) {
+    console.log('Logout Error', error);
+    throw error;
+  }
 }

@@ -57,7 +57,7 @@ const Todo = ({
   const addSubTodoClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     let newTodo: TodoItem = {
       id: null,
-      user_id: null,
+      user_id: todoOne.user_id,
       parents_id: todoOne.id,
       contents: '',
       status: 'TODO',

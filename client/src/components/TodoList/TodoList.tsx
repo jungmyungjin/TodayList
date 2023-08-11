@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import Todo from './Todo';
 import styles from './TodoList.module.scss';
-import { fetchTodoList } from 'services/apiService/apiService';
+import { fetchTodoList, fetchTask } from 'services/apiService/apiService';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { todoDataAllSelector } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
 import { userInfoSelector } from 'recoil/selectors/userInfoSelector'; // import your atom and selector
@@ -41,7 +41,7 @@ const TodoList = () => {
   const addMainTodoClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     const newTodo: TodoItem = {
       id: todoData.length + 1,
-      user_id: null,
+      user_id: userInfo.user_id,
       parents_id: null,
       contents: '',
       status: 'TODO',
@@ -55,7 +55,8 @@ const TodoList = () => {
   };
 
   const saveTodoClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log('save');
+    const data = localStorage.getItem('todoData') || '';
+    fetchTask(JSON.parse(data));
   };
 
   return (
