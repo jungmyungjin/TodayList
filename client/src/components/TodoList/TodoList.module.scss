@@ -6,6 +6,8 @@
   // background-color: aquamarine;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .TodoList {
@@ -31,4 +33,38 @@
     transform: scale(1.1);
     transition: transform 0.12s;
   }
+}
+
+.SaveTodo {
+  border: none;
+  // background-color: black;
+  width: 80%;
+  @include center-xy;
+  margin-bottom: 10px;
+  button {
+    margin-left: auto;
+    width: 40px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-color: $cementGray;
+    border-radius: 10px;
+    opacity: 0.6;
+  }
+  button:hover {
+    overflow: hidden;
+    opacity: 1;
+    img {
+      transition: 0.08s ease-in;
+      transform: scale(1.1);
+    }
+  }
+}
+.Line {
+  // position: absolute;
+  border: 4px solid $crimsonRed;
+  bottom: 0px;
+  width: 80%;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }

@@ -4,15 +4,18 @@ import { DateTime } from 'luxon';
 import Todo from './Todo';
 import styles from './TodoList.module.scss';
 import { fetchTodoList } from 'services/apiService/apiService';
-import AddIcon from 'assets/icons/Add.svg';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { todoDataAllSelector } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
+import { userInfoSelector } from 'recoil/selectors/userInfoSelector'; // import your atom and selector
 import { TodoDataState } from 'recoil/atoms/todoDataState';
 import { TodoItem } from 'types/TodoList';
+import AddIcon from 'assets/icons/Add.svg';
+import SaveIcon from 'assets/icons/Save.svg';
 
 const TodoList = () => {
   const rawTodoData = fetchTodoList(); // API 불러오기
   // const [todoLists, setTodoLists] = useState(rawTodoData); //
+  const [userInfo, setUserInfo] = useRecoilState(userInfoSelector);
 
   const [todoData, setTodoData] = useRecoilState(todoDataAllSelector);
   const todoDataState = useRecoilValue(TodoDataState);
@@ -51,8 +54,20 @@ const TodoList = () => {
     setTodoData(newTodoData);
   };
 
+  const saveTodoClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log('save');
+  };
+
   return (
     <div className={styles.Layout}>
+      {userInfo.isLogin && (
+        <div className={styles.SaveTodo}>
+          <button onClick={saveTodoClickHandler}>
+            <img src={SaveIcon} alt="save" />
+          </button>
+        </div>
+      )}
+      <div className={styles.Line}></div>
       <div className={styles.TodoList}>
         {todoDataState.map((e: TodoItem, idx: number) => {
           const type = e.parents_id ? 'SUB' : 'MAIN';
@@ -67,7 +82,7 @@ const TodoList = () => {
           );
         })}
         <div className={styles.AddTodo} onClick={addMainTodoClickHandler}>
-          <img src={AddIcon} alt="" />
+          <img src={AddIcon} alt="add todo" />
         </div>
       </div>
     </div>

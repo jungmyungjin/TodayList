@@ -35,7 +35,6 @@ const ThisWeekDates = () => {
             );
           })}
         </div>
-        <div className={styles.Line}></div>
       </div>
     </div>
   );
