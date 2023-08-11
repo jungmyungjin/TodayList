@@ -18,7 +18,13 @@ const Header = () => {
     (async () => {
       try {
         const userData = await fetchUserInfo();
-        setUserInfo({
+        await setUserInfo({
+          isLogin: true,
+          email: userData.email,
+          full_name: userData.full_name,
+          user_id: userData.user_id,
+        });
+        console.log('[header]setUserInfo', {
           isLogin: true,
           email: userData.email,
           full_name: userData.full_name,

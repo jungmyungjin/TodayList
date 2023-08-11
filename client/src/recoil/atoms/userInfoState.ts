@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { userInfo } from 'types/Auth';
 
-export const userInfoState = atom<userInfo>({
+export const UserInfoState = atom<userInfo>({
   key: 'userInfoState', // unique ID (with respect to other atoms/selectors)
   default: {
     isLogin: false,

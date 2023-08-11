@@ -3,22 +3,24 @@ import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import Todo from './Todo';
 import styles from './TodoList.module.scss';
-import { fetchTodoList, fetchTask } from 'services/apiService/apiService';
+import { fetchTaskList, fetchTaskSave } from 'services/apiService/apiService';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { todoDataAllSelector } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
 import { userInfoSelector } from 'recoil/selectors/userInfoSelector'; // import your atom and selector
 import { TodoDataState } from 'recoil/atoms/todoDataState';
+import { UserInfoState } from 'recoil/atoms/userInfoState';
+
 import { TodoItem } from 'types/TodoList';
 import AddIcon from 'assets/icons/Add.svg';
 import SaveIcon from 'assets/icons/Save.svg';
 
 const TodoList = () => {
-  const rawTodoData = fetchTodoList(); // API 불러오기
   // const [todoLists, setTodoLists] = useState(rawTodoData); //
   const [userInfo, setUserInfo] = useRecoilState(userInfoSelector);
 
   const [todoData, setTodoData] = useRecoilState(todoDataAllSelector);
   const todoDataState = useRecoilValue(TodoDataState);
+  const userInfoState = useRecoilValue(UserInfoState);
 
   // useEffect(() => {
   //   localStorage.setItem('todoData', JSON.stringify(todoDataState));
@@ -26,17 +28,20 @@ const TodoList = () => {
   // }, [todoDataState]);
 
   useEffect(() => {
-    const storageData = localStorage.getItem('todoData');
-    // 로컬 스토리지에 값이 없는 경우 API에서 불러옴
-    if (!storageData || storageData.length === 0) {
-      setTodoData(rawTodoData);
-      localStorage.setItem('todoData', JSON.stringify(rawTodoData));
-    }
-    // 로컬 스토리지에 값이 있는 경우 불러옴
-    else {
-      setTodoData(JSON.parse(storageData));
-    }
-  }, []);
+    const fetchData = async () => {
+      const storageData = localStorage.getItem('todoData');
+
+      console.log(userInfo);
+      if (userInfo.isLogin) {
+        const rawTodoData = await fetchTaskList();
+        setTodoData(rawTodoData);
+      } else if (storageData) {
+        setTodoData(JSON.parse(storageData));
+      }
+    };
+
+    fetchData();
+  }, [userInfoState]);
 
   const addMainTodoClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     const newTodo: TodoItem = {
@@ -56,7 +61,7 @@ const TodoList = () => {
 
   const saveTodoClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     const data = localStorage.getItem('todoData') || '';
-    fetchTask(JSON.parse(data));
+    fetchTaskSave(JSON.parse(data));
   };
 
   return (

@@ -120,12 +120,24 @@ export function fetchLoginKakao(): string {
 
 /// Task
 
-export async function fetchTask(todoData: TodoItem[]) {
+export async function fetchTaskSave(todoData: TodoItem[]) {
   try {
     const response = await apiClient.post('/task', todoData);
     return response;
   } catch (error: any) {
     console.log('Logout Error', error);
+    throw error;
+  }
+}
+
+export async function fetchTaskList() {
+  try {
+    const response = await apiClient.get('/task');
+    const taskList = await response?.data;
+    // console.log(taskList);
+    return taskList;
+    return;
+  } catch (error) {
     throw error;
   }
 }
