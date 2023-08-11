@@ -4,7 +4,7 @@ const { errorHandler } = require("../../middlewares/index");
 
 class TaskController {
   indexTask = errorHandler(async (req, res) => {
-    const allTask = await getTasks();
+    const allTask = await getTasks(req, res);
     res.status(200).json(allTask);
   });
 

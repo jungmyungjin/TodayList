@@ -4,7 +4,7 @@ const task = express.Router();
 const { verifyToken } = require("../../middlewares/index");
 const { TaskController } = require("../controllers/index");
 
-task.get("/", TaskController.indexTask);
+task.get("/", verifyToken, TaskController.indexTask);
 
 task.post("/", verifyToken, TaskController.createTask);
 
