@@ -7,9 +7,16 @@ const Task = sequelize.define(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
-      // autoIncrement: true,
+      autoIncrement: true,
       primaryKey: true,
       unique: "compositeIndex",
+      allowNull: false,
+    },
+    todo_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      unique: true,
     },
     user_id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -22,8 +29,8 @@ const Task = sequelize.define(
       },
     },
     parents_id: {
-      // self-referencing
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: true,
     },
     contents: {
@@ -35,8 +42,9 @@ const Task = sequelize.define(
       type: DataTypes.STRING(20),
       allowNull: false,
     },
-    order: {
-      type: DataTypes.INTEGER,
+    date: {
+      // TODO, COMPLETE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
   },
