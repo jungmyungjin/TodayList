@@ -19,13 +19,13 @@ const Task = sequelize.define(
       unique: true,
     },
     user_id: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.STRING,
       allowNull: false,
       references: {
         // 제약조건
         // 외래키
         model: User, // 참조 모델
-        key: "id", // 참조된 모델 컬럼
+        key: "email", // 참조된 모델 컬럼
       },
     },
     parents_id: {
