@@ -49,7 +49,7 @@ const TodoList = () => {
   const addMainTodoClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     const newTodo: TodoItem = {
       todo_id: uuidv4(),
-      user_id: userInfo.user_id,
+      user_email: userInfo.email,
       parents_id: null,
       contents: '',
       status: 'TODO',

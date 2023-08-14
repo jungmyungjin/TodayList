@@ -7,6 +7,5 @@ export const UserInfoState = atom<userInfo>({
     isLogin: false,
     email: '',
     full_name: '',
-    user_id: null,
   }, // default value (aka initial value)
 });

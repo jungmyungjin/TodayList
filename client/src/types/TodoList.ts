@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 
 export interface TodoItem {
   todo_id: string | null;
-  user_id: number | null;
+  user_email: string | null;
   parents_id: string | null;
   contents: string;
   status: 'TODO' | 'CHECKED';

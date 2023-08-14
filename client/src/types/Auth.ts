@@ -13,6 +13,5 @@ export interface LoginProps {
 export interface userInfo {
   isLogin: boolean;
   email: string;
-  full_name: string;
-  user_id: number | null;
+  full_name: string | null;
 }

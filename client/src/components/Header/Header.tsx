@@ -22,7 +22,6 @@ const Header = () => {
           isLogin: true,
           email: userData.email,
           full_name: userData.full_name,
-          user_id: userData.user_id,
         });
       } catch (error) {
         console.error(error);
@@ -36,7 +35,6 @@ const Header = () => {
       isLogin: false,
       email: '',
       full_name: '',
-      user_id: null,
     });
     window.location.replace(`${process.env.REACT_APP_BASE_ROUTE}`);
   };
