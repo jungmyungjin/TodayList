@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import Main from 'pages/MainPage';
 import styles from './Todo.module.scss';
 import AddIcon from 'assets/icons/Add.svg';
@@ -9,6 +11,8 @@ import { DateTime } from 'luxon';
 import { TodoItem, TodoProps } from 'types/TodoList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TodoDataState } from 'recoil/atoms/todoDataState';
+import { TodoDateState } from 'recoil/atoms/todoDateState';
+
 import { todoDataAllSelector } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
 import { todoDataOneSelector } from 'recoil/selectors/todoDataSelector';
 
@@ -23,6 +27,7 @@ const Todo = ({
   const [todoContents, setTodoContents] = useState(contents);
 
   const todoDataState = useRecoilValue(TodoDataState);
+  const todoDateState = useRecoilValue(TodoDateState);
   const [todoAll, setTodoAll] = useRecoilState(todoDataAllSelector);
   const [todoOne, setTodoOne] = useRecoilState(todoDataOneSelector(idx));
 
@@ -56,12 +61,12 @@ const Todo = ({
 
   const addSubTodoClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     let newTodo: TodoItem = {
-      id: null,
+      todo_id: uuidv4(),
       user_id: todoOne.user_id,
-      parents_id: todoOne.id,
+      parents_id: todoOne.todo_id,
       contents: '',
       status: 'TODO',
-      order: null,
+      date: todoDateState.toFormat('yyyy-MM-dd'),
       createdAt: DateTime.now().toString(),
       updatedAt: DateTime.now().toString(),
     };

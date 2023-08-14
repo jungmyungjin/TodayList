@@ -24,12 +24,6 @@ const Header = () => {
           full_name: userData.full_name,
           user_id: userData.user_id,
         });
-        console.log('[header]setUserInfo', {
-          isLogin: true,
-          email: userData.email,
-          full_name: userData.full_name,
-          user_id: userData.user_id,
-        });
       } catch (error) {
         console.error(error);
       }

@@ -1,10 +1,12 @@
+import { DateTime } from 'luxon';
+
 export interface TodoItem {
-  id: number | null;
+  todo_id: string | null;
   user_id: number | null;
-  parents_id: number | null;
+  parents_id: string | null;
   contents: string;
   status: 'TODO' | 'CHECKED';
-  order: number | null;
+  date: string;
   createdAt: string;
   updatedAt: string;
 }

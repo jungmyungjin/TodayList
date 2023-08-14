@@ -32,3 +32,13 @@
     font-size: 25px;
   }
 }
+
+.SelectedDate {
+  .date {
+    color: $crimsonRed;
+    font-weight: bold;
+  }
+}
+.NearDate:hover {
+  box-shadow: 0 0px 8px rgba($color: #bababa12, $alpha: 1);
+}

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-
 import { DateTime } from 'luxon';
+import { v4 as uuidv4 } from 'uuid';
+
 import Todo from './Todo';
 import styles from './TodoList.module.scss';
 import { fetchTaskList, fetchTaskSave } from 'services/apiService/apiService';
+
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { todoDataAllSelector } from 'recoil/selectors/todoDataSelector'; // import your atom and selector
 import { userInfoSelector } from 'recoil/selectors/userInfoSelector'; // import your atom and selector
 import { TodoDataState } from 'recoil/atoms/todoDataState';
 import { UserInfoState } from 'recoil/atoms/userInfoState';
+import { TodoDateState } from 'recoil/atoms/todoDateState';
 
 import { TodoItem } from 'types/TodoList';
 import AddIcon from 'assets/icons/Add.svg';
@@ -21,6 +24,7 @@ const TodoList = () => {
   const [todoData, setTodoData] = useRecoilState(todoDataAllSelector);
   const todoDataState = useRecoilValue(TodoDataState);
   const userInfoState = useRecoilValue(UserInfoState);
+  const todoDateState = useRecoilValue(TodoDateState);
 
   // useEffect(() => {
   //   localStorage.setItem('todoData', JSON.stringify(todoDataState));
@@ -31,9 +35,8 @@ const TodoList = () => {
     const fetchData = async () => {
       const storageData = localStorage.getItem('todoData');
 
-      console.log(userInfo);
       if (userInfo.isLogin) {
-        const rawTodoData = await fetchTaskList();
+        const rawTodoData = await fetchTaskList(todoDateState);
         setTodoData(rawTodoData);
       } else if (storageData) {
         setTodoData(JSON.parse(storageData));
@@ -41,16 +44,16 @@ const TodoList = () => {
     };
 
     fetchData();
-  }, [userInfoState]);
+  }, [userInfoState, todoDateState]);
 
   const addMainTodoClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     const newTodo: TodoItem = {
-      id: todoData.length + 1,
+      todo_id: uuidv4(),
       user_id: userInfo.user_id,
       parents_id: null,
       contents: '',
       status: 'TODO',
-      order: todoData.length + 1,
+      date: todoDateState.toFormat('yyyy-MM-dd'),
       createdAt: DateTime.now().toString(),
       updatedAt: DateTime.now().toString(),
     };
@@ -61,7 +64,7 @@ const TodoList = () => {
 
   const saveTodoClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     const data = localStorage.getItem('todoData') || '';
-    fetchTaskSave(JSON.parse(data));
+    fetchTaskSave(JSON.parse(data), todoDateState);
   };
 
   return (
