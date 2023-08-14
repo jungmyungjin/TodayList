@@ -9,7 +9,7 @@ const getTasks = async (req, res) => {
     const tasks = await Task.findAll({
       where: {
         date: date,
-        user_id: todoData?.user_id,
+        user_email: todoData?.email,
       },
     });
     res.status(200).json(tasks).end();
@@ -68,7 +68,7 @@ const createTasks = async (req, res) => {
     await Task.destroy({
       where: {
         date: date,
-        user_id: req.userInfo.user_id,
+        user_email: req.userInfo.email,
       },
     });
     // 새로운 task로 업데이트

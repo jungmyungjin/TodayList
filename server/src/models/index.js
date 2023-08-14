@@ -5,7 +5,7 @@ const sequelize = require("../db/sequelize");
 const User = require("./user");
 const Task = require("./task");
 
-Task.belongsTo(User, { as: "User", foreignKey: "user_id" });
+Task.belongsTo(User, { as: "User", foreignKey: "user_email" });
 
 sequelize
   .sync()

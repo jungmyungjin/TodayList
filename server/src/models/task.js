@@ -18,8 +18,8 @@ const Task = sequelize.define(
       allowNull: false,
       unique: true,
     },
-    user_id: {
-      type: DataTypes.STRING,
+    user_email: {
+      type: DataTypes.STRING(255),
       allowNull: false,
       references: {
         // 제약조건
