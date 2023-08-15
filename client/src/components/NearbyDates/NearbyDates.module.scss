@@ -1,0 +1,36 @@
+@import '../../styles/main.scss';
+
+.Layout {
+  // background-color: rgb(52, 144, 99);
+  display: flex;
+  justify-content: center;
+}
+
+.DatesLayoutSection {
+  // background-color: wheat;
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  width: 80%;
+
+  .NearbyDatesLayout {
+    // background-color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    & > div:nth-child(1),
+    & > div:nth-child(5) {
+      border-color: $cementGray;
+    }
+    & > div:nth-child(2),
+    & > div:nth-child(4) {
+      border-color: $azaleaPink;
+    }
+    & > div:nth-child(3) {
+      border-color: $crimsonRed;
+    }
+  }
+}

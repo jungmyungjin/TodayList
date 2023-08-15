@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'BagelFatOne';
+  src: url('../assets/fonts/BagelFatOne-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'NanumGothicCoding';
+  src: url('../assets/fonts/NanumGothicCoding-Bold.woff2') format('woff2');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'NanumGothicCoding';
+  src: url('../assets/fonts/NanumGothicCoding-Regular.woff2') format('woff2');
+  font-weight: normal;
+}
+
+// 기타 전역 스타일
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // font-family: 'Gowun Batang', $systemFont;
+}
+body {
+  font-family: 'NanumGothicCoding', $systemFont;
+}
