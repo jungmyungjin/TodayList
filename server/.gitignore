@@ -1,0 +1,4 @@
+.env
+node_modules/*
+sampleData/*
+*/node_modules/*
