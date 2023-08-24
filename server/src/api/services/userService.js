@@ -52,8 +52,8 @@ const loginOAuth = async ({ email, full_name = "", type }) => {
 
   // JWT 토큰 생성
   const jwt = generateAccessToken({
-    email: foundUser.email,
-    full_name: foundUser.full_name,
+    email: email,
+    full_name: full_name,
   });
   return jwt;
 };
