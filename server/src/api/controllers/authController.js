@@ -5,7 +5,11 @@ class AuthController {
   login = errorHandler(async (req, res) => {
     const jwt = await loginUser(req, res);
     res.cookie("access_token", jwt, {
+      path: "/",
+      domain: process.env.TODAY_LIST_DOMAIN,
       httpOnly: true,
+      sameSite: "none",
+      secure: true,
     });
     res.status(200).json({ token: jwt });
     res.end();
