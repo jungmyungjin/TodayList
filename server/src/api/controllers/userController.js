@@ -10,21 +10,6 @@ const { generateAccessToken } = require("../services/authService");
 const { errorHandler } = require("../../middlewares/index");
 
 class UserController {
-  // 로그아웃
-  logout = errorHandler(async (req, res) => {
-    // 코드 내용
-    res
-      .clearCookie("access_token", {
-        path: "/",
-        domain: process.env.TODAY_LIST_DOMAIN,
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-      })
-      .status(204)
-      .end();
-  });
-
   // 전체 사용자 조회
   indexUser = errorHandler(async (req, res) => {
     const allUser = await getUsers();
