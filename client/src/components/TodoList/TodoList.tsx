@@ -43,7 +43,11 @@ const TodoList = () => {
       if (todoData) {
         printData.push(...todoData);
       }
-      setTodoData(printData);
+      setTodoData(
+        printData.filter(
+          (todo) => todo.date === todoDateState.toFormat('yyyy-MM-dd')
+        )
+      );
     };
 
     fetchData();
