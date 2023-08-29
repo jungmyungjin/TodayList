@@ -70,11 +70,21 @@ const Todo = ({
       createdAt: DateTime.now().toString(),
       updatedAt: DateTime.now().toString(),
     };
+
+    // 마지막 위치 구하기
+    let childLastIdx = idx + 1;
+    for (childLastIdx; childLastIdx < todoAll.length; childLastIdx++) {
+      if (!todoAll[childLastIdx].parents_id) {
+        break;
+      }
+    }
+    childLastIdx -= 1;
+
     // atom 에 반영 : 로컬스토리지 저장
     const newTodoData = [
-      ...todoAll.slice(0, idx + 1),
+      ...todoAll.slice(0, childLastIdx + 1),
       newTodo,
-      ...todoAll.slice(idx + 1),
+      ...todoAll.slice(childLastIdx + 1),
     ];
     setTodoAll(newTodoData);
   };
