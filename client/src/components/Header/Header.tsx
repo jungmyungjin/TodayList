@@ -10,7 +10,6 @@ import { useRecoilState } from 'recoil';
 import { userInfo } from 'types/Auth';
 
 const Header = () => {
-  // const [userName, setUserName] = useState('');
   const [userInfo, setUserInfo] = useRecoilState(userInfoSelector);
 
   useEffect(() => {
@@ -36,6 +35,8 @@ const Header = () => {
       email: '',
       full_name: '',
     });
+
+    localStorage.removeItem('todoData');
     window.location.replace(`${process.env.REACT_APP_BASE_ROUTE}`);
   };
 
