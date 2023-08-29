@@ -18,7 +18,6 @@ import AddIcon from 'assets/icons/Add.svg';
 import SaveIcon from 'assets/icons/Save.svg';
 
 const TodoList = () => {
-  // const [todoLists, setTodoLists] = useState(rawTodoData); //
   const [userInfo, setUserInfo] = useRecoilState(userInfoSelector);
 
   const [todoData, setTodoData] = useRecoilState(todoDataAllSelector);
@@ -26,21 +25,25 @@ const TodoList = () => {
   const userInfoState = useRecoilValue(UserInfoState);
   const todoDateState = useRecoilValue(TodoDateState);
 
-  // useEffect(() => {
-  //   localStorage.setItem('todoData', JSON.stringify(todoDataState));
-  //   console.log('todoDataState', todoDataState);
-  // }, [todoDataState]);
-
   useEffect(() => {
     const fetchData = async () => {
-      const storageData = localStorage.getItem('todoData');
+      const storageStringData = localStorage.getItem('todoData');
+      const todoData: TodoItem[] | null = !storageStringData
+        ? null
+        : JSON.parse(storageStringData);
+
+      let printData: TodoItem[] = [];
 
       if (userInfo.isLogin) {
         const rawTodoData = await fetchTaskList(todoDateState);
-        setTodoData(rawTodoData);
-      } else if (storageData) {
-        setTodoData(JSON.parse(storageData));
+        if (rawTodoData.length) {
+          printData.push(rawTodoData);
+        }
       }
+      if (todoData) {
+        printData.push(...todoData);
+      }
+      setTodoData(printData);
     };
 
     fetchData();
