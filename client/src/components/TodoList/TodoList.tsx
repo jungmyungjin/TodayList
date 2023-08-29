@@ -28,8 +28,8 @@ const TodoList = () => {
   useEffect(() => {
     const fetchData = async () => {
       const storageStringData = localStorage.getItem('todoData');
-      const todoData: TodoItem[] | null = !storageStringData
-        ? null
+      const todoData: TodoItem[] | [] = !storageStringData
+        ? []
         : JSON.parse(storageStringData);
 
       let printData: TodoItem[] = [];
@@ -37,11 +37,10 @@ const TodoList = () => {
       if (userInfo.isLogin) {
         const rawTodoData = await fetchTaskList(todoDateState);
         if (rawTodoData.length) {
-          printData.push(rawTodoData);
+          printData = [...rawTodoData];
         }
-      }
-      if (todoData) {
-        printData.push(...todoData);
+      } else {
+        printData = [...todoData];
       }
       setTodoData(
         printData.filter(
